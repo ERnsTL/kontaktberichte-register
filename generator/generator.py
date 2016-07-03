@@ -235,17 +235,35 @@ if __name__ == '__main__':
                     print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
                 outFile.writelines([line])
 
-            # entry; may contain VERS-VON, VERS-BIS, SPRECHER, INHALT  #TODO ??Überbegriff!Begriff?? für Stichwörter
-            #TODO
-            outFile.writelines(entryTemplate)
+            for entries in entries[bookTitle]:
+                # entry; may contain VERS-VON, VERS-BIS, SPRECHER, INHALT  #TODO ??Überbegriff!Begriff?? für Stichwörter
+                #TODO @ csv there is also: KAPITEL_NR - what to do with this?
+                for line in entryTemplate:
+                    #if delimiter + "" + delimiter in line:
+                    #    result = chapter[""]
+                    #    line = line.replace(delimiter + "" + delimiter, result)
+                    if delimiter + "VERS-VON" + delimiter in line:
+                        result = entries["VERS_VON"]
+                        line = line.replace(delimiter + "VERS-VON" + delimiter, result)
+                    if delimiter + "VERS-BIS" + delimiter in line:
+                        result = entries["VERS_BIS"]
+                        line = line.replace(delimiter + "VERS-BIS" + delimiter, result)
+                    if delimiter + "SPRECHER" + delimiter in line:
+                        result = entries["SPRECHER"]
+                        line = line.replace(delimiter + "SPRECHER" + delimiter, result)
+                    if delimiter + "INHALT" + delimiter in line:
+                        result = entries["INHALT"]
+                        line = line.replace(delimiter + "INHALT" + delimiter, result)
+                    if delimiter in line :
+                        print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
+                    outFile.writelines([line])
 
-            # chapter postfix
-            #TODO
+            # chapter postfix (no variables)
             outFile.writelines(chapterPostfix)
 
-        # book postfix
-        #TODO
+        # book postfix (no variables)
         outFile.writelines(bookPostfix)
+
     # template postfix, may contain AUTOREN   #TODO Autoren mit \\ oder , getrennt
     for line in templatePostfix:
         if delimiter + "AUTOREN" + delimiter in line:
@@ -259,5 +277,6 @@ if __name__ == '__main__':
         if delimiter in line :
             print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
         outFile.writelines([line])
+
     # close output file
     outFile.close()
