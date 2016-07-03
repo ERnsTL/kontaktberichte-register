@@ -134,14 +134,21 @@ if __name__ == '__main__':
         sys.exit(3)
 
     # enerate output file
-    outFile.writelines(templatePrefix)  # ERZEUGT-DATUM, DATEN-VERSION, DATEN-DATUM
-    outFile.writelines(bookPrefix)  # BUCH-TITEL, BUCH-NAME, BUCH-AUSGABE-JAHR, KAPITEL-VON, KAPITEL-BIS, KAPITEL-VON-DATUM, KAPITEL-BIS-DATUM
-    outFile.writelines(chapterPrefix)   # KAPITEL-NUMMER, KAPITEL-DATUM, KAPITEL-UHRZEIT
-    outFile.writelines(entryTemplate)   # VERS-VON, VERS-BIS, SPRECHER, INHALT  #TODO ??Überbegriff!Begriff??
-    outFile.writelines(chapterPostfix)
-    outFile.writelines(bookPostfix) # AUTOREN   #TODO mit \\ oder , getrennt
-    outFile.writelines(templatePostfix)
-    #../.git/ORIG_HEAD
+    # template prefix; may contain ERZEUGT-DATUM, DATEN-VERSION, DATEN-DATUM    #TODO ../.git/ORIG_HEAD
     #TODO outFile.write(line.replace('old_text', 'new_text'))
     #TODO templatePrefix.popleft()
+    outFile.writelines(templatePrefix)
+    # book prefix; may contain BUCH-TITEL, BUCH-NAME, BUCH-AUSGABE-JAHR, KAPITEL-VON, KAPITEL-BIS, KAPITEL-VON-DATUM, KAPITEL-BIS-DATUM
+    outFile.writelines(bookPrefix)
+    # chapter prefix; may contain KAPITEL-NUMMER, KAPITEL-DATUM, KAPITEL-UHRZEIT
+    outFile.writelines(chapterPrefix)
+    # entry; may contain VERS-VON, VERS-BIS, SPRECHER, INHALT  #TODO ??Überbegriff!Begriff?? für Stichwörter
+    outFile.writelines(entryTemplate)
+    # chapter postfix
+    outFile.writelines(chapterPostfix)
+    # book postfix
+    outFile.writelines(bookPostfix)
+    # template postfix, may contain AUTOREN   #TODO mit \\ oder , getrennt
+    outFile.writelines(templatePostfix)
+    # close output file
     outFile.close()
