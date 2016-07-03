@@ -41,7 +41,7 @@ if __name__ == '__main__':
     #TODO interactive mode
 
     if args.version:
-        print("Version: 0.0.1 (2016-07-03)")
+        print("Version: 0.1.0 (2016-07-04)")
         sys.exit(0)
     #print("OK, generiere {}".format(args.format))
 
