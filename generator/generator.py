@@ -166,6 +166,7 @@ if __name__ == '__main__':
     #    if delimiter + "" + delimiter in line:
     #        result =
     #        line = line.replace(delimiter + "" + delimiter, result)
+
     # template prefix; may contain ERZEUGT-DATUM, DATEN-VERSION, DATEN-DATUM    #TODO ../.git/ORIG_HEAD
     for line in templatePrefix:
         if delimiter + "ERZEUGT-DATUM" + delimiter in line:
@@ -184,6 +185,7 @@ if __name__ == '__main__':
         if delimiter in line :
             print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
         outFile.writelines([line])
+
     # for each book...
     for book in books:
         # book prefix; may contain BUCH-TITEL, BUCH-AUSGABE-JAHR, KAPITEL-VON, KAPITEL-BIS, KAPITEL-VON-DATUM, KAPITEL-BIS-DATUM
@@ -235,7 +237,12 @@ if __name__ == '__main__':
                     print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
                 outFile.writelines([line])
 
-            for entries in entries[bookTitle]:
+            for entry in entries[bookTitle]:
+                # only print entries for this chapter/KB
+                #TODO key error may arise for special suffixes etc. KAPITEL_NR here is misleading, it is actually NR+SPECIAL_SUFFIX if present
+                if entry["KAPITEL_NR"] != chapter["KAPITEL_NR"]:
+                    continue
+
                 # entry; may contain VERS-VON, VERS-BIS, SPRECHER, INHALT  #TODO ??Überbegriff!Begriff?? für Stichwörter
                 #TODO @ csv there is also: KAPITEL_NR - what to do with this?
                 for line in entryTemplate:
@@ -243,16 +250,16 @@ if __name__ == '__main__':
                     #    result = chapter[""]
                     #    line = line.replace(delimiter + "" + delimiter, result)
                     if delimiter + "VERS-VON" + delimiter in line:
-                        result = entries["VERS_VON"]
+                        result = entry["VERS_VON"]
                         line = line.replace(delimiter + "VERS-VON" + delimiter, result)
                     if delimiter + "VERS-BIS" + delimiter in line:
-                        result = entries["VERS_BIS"]
+                        result = entry["VERS_BIS"]
                         line = line.replace(delimiter + "VERS-BIS" + delimiter, result)
                     if delimiter + "SPRECHER" + delimiter in line:
-                        result = entries["SPRECHER"]
+                        result = entry["SPRECHER"]
                         line = line.replace(delimiter + "SPRECHER" + delimiter, result)
                     if delimiter + "INHALT" + delimiter in line:
-                        result = entries["INHALT"]
+                        result = entry["INHALT"]
                         line = line.replace(delimiter + "INHALT" + delimiter, result)
                     if delimiter in line :
                         print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
