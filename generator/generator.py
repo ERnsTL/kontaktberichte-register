@@ -7,6 +7,7 @@ import argparse
 from enum import Enum
 import sys
 import datetime
+import csv
 
 class TemplateState(Enum):
     TemplatePrefix = 1  # looking for book begin
@@ -18,6 +19,8 @@ class TemplateState(Enum):
     TemplatePostfix = 7 # looking for template end
 
 if __name__ == '__main__':
+    # NOTE: argparse stdlibrary docs @ https://docs.python.org/3/library/argparse.html#choices
+    # NOTE: argparse howto @ https://docs.python.org/3/howto/argparse.html
     parser = argparse.ArgumentParser(description="Generiert ein Register der Kontaktberichte zur weiteren Verarbeitung.")
     group = parser.add_mutually_exclusive_group()
     group.add_argument("-v", "--verbose", action="store_true")
@@ -35,6 +38,7 @@ if __name__ == '__main__':
     parser.add_argument("-o", "--output", type=str, help="output file path", default="register.tex")
     parser.add_argument("-V", "--version", action="store_true")
     args = parser.parse_args()
+    #TODO interactive mode
 
     if args.version:
         print("Version: 0.0.1 (2016-07-03)")
@@ -117,7 +121,6 @@ if __name__ == '__main__':
             sys.exit(2)
     templateFile.close()
     if state != TemplateState.TemplatePostfix:
-        #TODO better warning message: which marker was not found?
         which = "ERROR"
         if state == TemplateState.TemplatePrefix:
             which = delimiter + "BUCH-ANFANG" + delimiter
@@ -135,6 +138,27 @@ if __name__ == '__main__':
             which = "EOF"   # NOTE: should never happen
         print("FEHLER: Markierung {} fehlt in der Vorlage -> Markierungen auf Vollständigkeit überprüfen.".format(which))
         sys.exit(3)
+
+    # read data files
+    dialect = "excel-tab"
+    books = []  # NOTE: using list because it is ordered as is iterating over it
+    chapters = {}
+    entries = {}
+    with open('../daten/meta.csv', 'r') as bookListFile:
+        bookList = csv.DictReader(bookListFile, dialect=dialect)
+        for book in bookList:
+            print(book['BUCH_TITEL_KURZ'], book['BUCH_TITEL'], book['BUCH_AUSGABE_JAHR'], book['KAPITEL_VON'], book['KAPITEL_BIS'], book['EINLEITUNG'])
+            # read corresponding book meta file for chapter list
+            bookTitle = book['BUCH_TITEL_KURZ']
+            books.append(book)
+            bookMetaFileName = "../daten/{}_meta.csv".format(bookTitle.lower())
+            entriesFileName = "../daten/{}.csv".format(bookTitle.lower())
+            with open(bookMetaFileName, 'r') as bookMetaFile:
+                chapterList = csv.DictReader(bookMetaFile, dialect=dialect)
+                chapters[bookTitle] = list(chapterList)  # list copy
+            with open(entriesFileName, 'r') as entriesFile:
+                entriesList = csv.DictReader(entriesFile, dialect=dialect)
+                entries[bookTitle] = list(entriesList)   # list copy
 
     # generate output file
     #TODO check for unused/unneeded fields in template file and data files
@@ -159,49 +183,41 @@ if __name__ == '__main__':
         if delimiter in line :
             print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
         outFile.writelines([line])
-    # book prefix; may contain BUCH-TITEL, BUCH-NAME, BUCH-AUSGABE-JAHR, KAPITEL-VON, KAPITEL-BIS, KAPITEL-VON-DATUM, KAPITEL-BIS-DATUM
-    '''
-    for line in bookPrefix:
-        if delimiter + "" + delimiter in line:
-            result =
-            line = line.replace(delimiter + "" + delimiter, result)
-        if delimiter + "" + delimiter in line:
-            result =
-            line = line.replace(delimiter + "" + delimiter, result)
-        if delimiter + "" + delimiter in line:
-            result =
-            line = line.replace(delimiter + "" + delimiter, result)
-        if delimiter + "" + delimiter in line:
-            result =
-            line = line.replace(delimiter + "" + delimiter, result)
-        if delimiter + "" + delimiter in line:
-            result =
-            line = line.replace(delimiter + "" + delimiter, result)
-        if delimiter + "" + delimiter in line:
-            result =
-            line = line.replace(delimiter + "" + delimiter, result)
-        if delimiter + "" + delimiter in line:
-            result =
-            line = line.replace(delimiter + "" + delimiter, result)
-        if delimiter + "" + delimiter in line:
-            result =
-            line = line.replace(delimiter + "" + delimiter, result)
-        if delimiter + "" + delimiter in line:
-            result =
-            line = line.replace(delimiter + "" + delimiter, result)
-        if delimiter in line :
-            print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
-        outFile.writelines([line])
-    '''
-    outFile.writelines(bookPrefix)
-    # chapter prefix; may contain KAPITEL-NUMMER, KAPITEL-DATUM, KAPITEL-UHRZEIT
-    outFile.writelines(chapterPrefix)
-    # entry; may contain VERS-VON, VERS-BIS, SPRECHER, INHALT  #TODO ??Überbegriff!Begriff?? für Stichwörter
-    outFile.writelines(entryTemplate)
-    # chapter postfix
-    outFile.writelines(chapterPostfix)
-    # book postfix
-    outFile.writelines(bookPostfix)
+    # for each book...
+    for book in books:
+        # book prefix; may contain BUCH-TITEL, BUCH-AUSGABE-JAHR, KAPITEL-VON, KAPITEL-BIS, KAPITEL-VON-DATUM, KAPITEL-BIS-DATUM
+        for line in bookPrefix:
+            if delimiter + "BUCH-TITEL" + delimiter in line:
+                #print("typ: {}".format(type(book).__name__))
+                result = book["BUCH_TITEL"]
+                line = line.replace(delimiter + "BUCH-TITEL" + delimiter, result)
+            if delimiter + "BUCH-AUSGABE-JAHR" + delimiter in line:
+                result = book["BUCH_AUSGABE_JAHR"]
+                line = line.replace(delimiter + "BUCH-AUSGABE-JAHR" + delimiter, result)
+            if delimiter + "KAPITEL-VON" + delimiter in line:
+                result = book["KAPITEL_VON"]
+                line = line.replace(delimiter + "KAPITEL-VON" + delimiter, result)
+            if delimiter + "KAPITEL-BIS" + delimiter in line:
+                result = book["KAPITEL_BIS"]
+                line = line.replace(delimiter + "KAPITEL-BIS" + delimiter, result)
+            if delimiter + "KAPITEL-VON-DATUM" + delimiter in line:
+                result = "TODO"    #TODO generate from chapters list
+                line = line.replace(delimiter + "KAPITEL-VON-DATUM" + delimiter, result)
+            if delimiter + "KAPITEL-BIS-DATUM" + delimiter in line:
+                result = "TODO"   #TODO generate
+                line = line.replace(delimiter + "KAPITEL-BIS-DATUM" + delimiter, result)
+            if delimiter in line :
+                print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
+            outFile.writelines([line])
+
+        # chapter prefix; may contain KAPITEL-NUMMER, KAPITEL-DATUM, KAPITEL-UHRZEIT
+        outFile.writelines(chapterPrefix)
+        # entry; may contain VERS-VON, VERS-BIS, SPRECHER, INHALT  #TODO ??Überbegriff!Begriff?? für Stichwörter
+        outFile.writelines(entryTemplate)
+        # chapter postfix
+        outFile.writelines(chapterPostfix)
+        # book postfix
+        outFile.writelines(bookPostfix)
     # template postfix, may contain AUTOREN   #TODO Autoren mit \\ oder , getrennt
     for line in templatePostfix:
         if delimiter + "AUTOREN" + delimiter in line:
