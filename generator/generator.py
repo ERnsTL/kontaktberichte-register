@@ -5,8 +5,8 @@ weiterverarbeitbaren Quelldatei (LaTeX oder HTML) zusammen."""
 
 import argparse
 from enum import Enum
-from collections import deque
 import sys
+import datetime
 
 class TemplateState(Enum):
     TemplatePrefix = 1  # looking for book begin
@@ -43,6 +43,9 @@ if __name__ == '__main__':
 
     # parse template line by line, resulting in separate line lists for each part
     filename = ("main.tex" if args.format == "latex" else "index.html")
+    if args.format == "html":
+        print("FEHLER: HTML-Ausgabe noch unimplementiert. -> Bitte als Format 'latex' angeben.")
+        sys.exit(1)
     templateFile = open("./vorlagen/{}/{}".format(args.template, filename), 'r')
     outFile = open(args.output, 'w')
     state = TemplateState.TemplatePrefix
@@ -54,52 +57,52 @@ if __name__ == '__main__':
     #       chapter postfix
     #   book postfix
     # template postfix
-    templatePrefix = deque([])
-    templatePostfix = deque([])
+    templatePrefix = []
+    templatePostfix = []
     bookPrefix = []
     bookPostfix = []
     chapterPrefix = []
     chapterPostfix = []
     entryTemplate = []
-    markerStr = "!!"
+    delimiter = '!!'
     for line in templateFile:
         if state == TemplateState.TemplatePrefix:
-            if markerStr + "BUCH-ANFANG" + markerStr in line:
+            if delimiter + "BUCH-ANFANG" + delimiter in line:
                 # NOTE: discarding line
                 state = TemplateState.BookPrefix
             else:
                 # still in template prefix, save line
                 templatePrefix.append(line)
         elif state == TemplateState.BookPrefix:
-            if markerStr + "KAPITEL-ANFANG" + markerStr in line:
+            if delimiter + "KAPITEL-ANFANG" + delimiter in line:
                 # NOTE: discarding line
                 state = TemplateState.EntryPrefix
             else:
                 # still in book prefix, save line
                 bookPrefix.append(line)
         elif state == TemplateState.EntryPrefix:
-            if markerStr + "EINTRAG-ANFANG" + markerStr in line:
+            if delimiter + "EINTRAG-ANFANG" + delimiter in line:
                 # NOTE: discard line
                 state = TemplateState.Entry
             else:
                 # still in entry, save line
                 chapterPrefix.append(line)
         elif state == TemplateState.Entry:
-            if markerStr + "EINTRAG-ENDE" + markerStr in line:
+            if delimiter + "EINTRAG-ENDE" + delimiter in line:
                 # NOTE: discard line
                 state = TemplateState.ChapterPostfix
             else:
                 # still after entry in chapter, save line
                 entryTemplate.append(line)
         elif state == TemplateState.ChapterPostfix:
-            if markerStr + "KAPITEL-ENDE" + markerStr in line:
+            if delimiter + "KAPITEL-ENDE" + delimiter in line:
                 # NOTE: discard line
                 state = TemplateState.BookPostfix
             else:
                 # still after chapter in book, save line
                 chapterPostfix.append(line)
         elif state == TemplateState.BookPostfix:
-            if markerStr + "BUCH-ENDE" + markerStr in line:
+            if delimiter + "BUCH-ENDE" + delimiter in line:
                 ## NOTE: discard line
                 state = TemplateState.TemplatePostfix
             else:
@@ -110,35 +113,86 @@ if __name__ == '__main__':
             # NOTE: waiting for end of file, no further state
             templatePostfix.append(line)
         else:
-            print("FEHLER: Unbekannter Zustand {}".format(state))
+            print("FEHLER: Unbekannter Einlese-Zustand {} -> Programmfehler liegt vor.".format(state))
             sys.exit(2)
     templateFile.close()
     if state != TemplateState.TemplatePostfix:
         #TODO better warning message: which marker was not found?
         which = "ERROR"
         if state == TemplateState.TemplatePrefix:
-            which = markerStr + "BUCH-ANFANG" + markerStr
+            which = delimiter + "BUCH-ANFANG" + delimiter
         elif state == TemplateState.BookPrefix:
-            which = markerStr + "KAPITEL-ANFANG" + markerStr
+            which = delimiter + "KAPITEL-ANFANG" + delimiter
         elif state == TemplateState.EntryPrefix:
-            which = markerStr + "EINTRAG-ANFANG" + markerStr
+            which = delimiter + "EINTRAG-ANFANG" + delimiter
         elif state == TemplateState.Entry:
-            which = markerStr + "EINTRAG-ENDE" + markerStr
+            which = delimiter + "EINTRAG-ENDE" + delimiter
         elif state == TemplateState.ChapterPostfix:
-            which = markerStr + "KAPITEL-ENDE" + markerStr
+            which = delimiter + "KAPITEL-ENDE" + delimiter
         elif state == TemplateState.BookPostfix:
-            which = markerStr + "BUCH-ENDE" + markerStr
+            which = delimiter + "BUCH-ENDE" + delimiter
         elif state == TemplateState.TemplatePostfix:
             which = "EOF"   # NOTE: should never happen
         print("FEHLER: Markierung {} fehlt in der Vorlage -> Markierungen auf Vollständigkeit überprüfen.".format(which))
         sys.exit(3)
 
-    # enerate output file
+    # generate output file
+    #TODO check for unused/unneeded fields in template file and data files
+    #    if delimiter + "" + delimiter in line:
+    #        result =
+    #        line = line.replace(delimiter + "" + delimiter, result)
     # template prefix; may contain ERZEUGT-DATUM, DATEN-VERSION, DATEN-DATUM    #TODO ../.git/ORIG_HEAD
-    #TODO outFile.write(line.replace('old_text', 'new_text'))
-    #TODO templatePrefix.popleft()
-    outFile.writelines(templatePrefix)
+    for line in templatePrefix:
+        if delimiter + "ERZEUGT-DATUM" + delimiter in line:
+            result = datetime.date.today().isoformat()
+            line = line.replace(delimiter + "ERZEUGT-DATUM" + delimiter, result)
+        if delimiter + "DATEN-VERSION" + delimiter in line:
+            with open("../.git/ORIG_HEAD", 'r') as f:
+                #TODO try..catch block resp. catch file open error
+                first_line = f.readline().rstrip()[:6]
+                line = line.replace(delimiter + "DATEN-VERSION" + delimiter, first_line)
+                # NOTE: closes file automatically at end of block
+        if delimiter + "DATEN-DATUM" + delimiter in line :
+            #TODO implement
+            line = line.replace(delimiter + "DATEN-DATUM" + delimiter, "TODO")
+        # else case
+        if delimiter in line :
+            print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
+        outFile.writelines([line])
     # book prefix; may contain BUCH-TITEL, BUCH-NAME, BUCH-AUSGABE-JAHR, KAPITEL-VON, KAPITEL-BIS, KAPITEL-VON-DATUM, KAPITEL-BIS-DATUM
+    '''
+    for line in bookPrefix:
+        if delimiter + "" + delimiter in line:
+            result =
+            line = line.replace(delimiter + "" + delimiter, result)
+        if delimiter + "" + delimiter in line:
+            result =
+            line = line.replace(delimiter + "" + delimiter, result)
+        if delimiter + "" + delimiter in line:
+            result =
+            line = line.replace(delimiter + "" + delimiter, result)
+        if delimiter + "" + delimiter in line:
+            result =
+            line = line.replace(delimiter + "" + delimiter, result)
+        if delimiter + "" + delimiter in line:
+            result =
+            line = line.replace(delimiter + "" + delimiter, result)
+        if delimiter + "" + delimiter in line:
+            result =
+            line = line.replace(delimiter + "" + delimiter, result)
+        if delimiter + "" + delimiter in line:
+            result =
+            line = line.replace(delimiter + "" + delimiter, result)
+        if delimiter + "" + delimiter in line:
+            result =
+            line = line.replace(delimiter + "" + delimiter, result)
+        if delimiter + "" + delimiter in line:
+            result =
+            line = line.replace(delimiter + "" + delimiter, result)
+        if delimiter in line :
+            print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
+        outFile.writelines([line])
+    '''
     outFile.writelines(bookPrefix)
     # chapter prefix; may contain KAPITEL-NUMMER, KAPITEL-DATUM, KAPITEL-UHRZEIT
     outFile.writelines(chapterPrefix)
@@ -148,7 +202,18 @@ if __name__ == '__main__':
     outFile.writelines(chapterPostfix)
     # book postfix
     outFile.writelines(bookPostfix)
-    # template postfix, may contain AUTOREN   #TODO mit \\ oder , getrennt
-    outFile.writelines(templatePostfix)
+    # template postfix, may contain AUTOREN   #TODO Autoren mit \\ oder , getrennt
+    for line in templatePostfix:
+        if delimiter + "AUTOREN" + delimiter in line:
+            autorenSeparator = (" \\\\" if args.format == "latex" else "<br>")
+            with open("../daten/AUTHORS", 'r') as autorenFile:
+                #TODO try..catch block resp. catch file open error
+                autoren = autorenFile.readlines()
+                autoren = [autor.rstrip() for autor in autoren]
+                line = line.replace(delimiter + "AUTOREN" + delimiter, (autorenSeparator + "\n").join(autoren))
+                # NOTE: closes file automatically at end of block
+        if delimiter in line :
+            print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
+        outFile.writelines([line])
     # close output file
     outFile.close()
