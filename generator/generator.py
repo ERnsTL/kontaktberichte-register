@@ -144,6 +144,7 @@ if __name__ == '__main__':
     books = []  # NOTE: using list because it is ordered as is iterating over it
     chapters = {}
     entries = {}
+    #TODO harmonize _ and - between csv <-> template
     with open('../daten/meta.csv', 'r') as bookListFile:
         bookList = csv.DictReader(bookListFile, dialect=dialect)
         for book in bookList:
@@ -210,13 +211,40 @@ if __name__ == '__main__':
                 print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
             outFile.writelines([line])
 
-        # chapter prefix; may contain KAPITEL-NUMMER, KAPITEL-DATUM, KAPITEL-UHRZEIT
-        outFile.writelines(chapterPrefix)
-        # entry; may contain VERS-VON, VERS-BIS, SPRECHER, INHALT  #TODO ??Überbegriff!Begriff?? für Stichwörter
-        outFile.writelines(entryTemplate)
-        # chapter postfix
-        outFile.writelines(chapterPostfix)
+        bookTitle = book["BUCH_TITEL_KURZ"]
+        for chapter in chapters[bookTitle]:
+            # chapter prefix; may contain KAPITEL-NR, KAPITEL-DATUM, KAPITEL-UHRZEIT, PERSONEN, EINLEITUNG
+            #TODO @ csv: SONDER_SUFFIX, SONDER_NAME
+            for line in chapterPrefix:
+                if delimiter + "KAPITEL-NUMMER" + delimiter in line:
+                    result = chapter["KAPITEL_NR"]  #TODO harmonize name csv <-> template
+                    line = line.replace(delimiter + "KAPITEL-NUMMER" + delimiter, result)
+                if delimiter + "KAPITEL-DATUM" + delimiter in line:
+                    result = chapter["DATUM"]   #TODO harmonize name csv <-> template
+                    line = line.replace(delimiter + "KAPITEL-DATUM" + delimiter, result)
+                if delimiter + "KAPITEL-UHRZEIT" + delimiter in line:
+                    result = chapter["UHRZEIT"]   #TODO harmonize name csv <-> template
+                    line = line.replace(delimiter + "KAPITEL-UHRZEIT" + delimiter, result)
+                if delimiter + "PERSONEN" + delimiter in line:
+                    result = chapter["PERSONEN"]
+                    line = line.replace(delimiter + "PERSONEN" + delimiter, result)
+                if delimiter + "EINLEITUNG" + delimiter in line:
+                    result = chapter["EINLEITUNG"]
+                    line = line.replace(delimiter + "EINLEITUNG" + delimiter, result)
+                if delimiter in line :
+                    print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
+                outFile.writelines([line])
+
+            # entry; may contain VERS-VON, VERS-BIS, SPRECHER, INHALT  #TODO ??Überbegriff!Begriff?? für Stichwörter
+            #TODO
+            outFile.writelines(entryTemplate)
+
+            # chapter postfix
+            #TODO
+            outFile.writelines(chapterPostfix)
+
         # book postfix
+        #TODO
         outFile.writelines(bookPostfix)
     # template postfix, may contain AUTOREN   #TODO Autoren mit \\ oder , getrennt
     for line in templatePostfix:
