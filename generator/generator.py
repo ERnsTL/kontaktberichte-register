@@ -41,7 +41,7 @@ if __name__ == '__main__':
         sys.exit(0)
     #print("OK, generiere {}".format(args.format))
 
-    # parse template line by line, resulting in static parts and dynamic parts
+    # parse template line by line, resulting in separate line lists for each part
     filename = ("main.tex" if args.format == "latex" else "index.html")
     templateFile = open("./vorlagen/{}/{}".format(args.template, filename), 'r')
     outFile = open(args.output, 'w')
@@ -61,44 +61,45 @@ if __name__ == '__main__':
     chapterPrefix = []
     chapterPostfix = []
     entryTemplate = []
+    markerStr = "!!"
     for line in templateFile:
         if state == TemplateState.TemplatePrefix:
-            if "%%BUCH_ANFANG%%" in line:
+            if markerStr + "BUCH-ANFANG" + markerStr in line:
                 # NOTE: discarding line
                 state = TemplateState.BookPrefix
             else:
                 # still in template prefix, save line
                 templatePrefix.append(line)
         elif state == TemplateState.BookPrefix:
-            if "%%KAPITEL_ANFANG%%" in line:
+            if markerStr + "KAPITEL-ANFANG" + markerStr in line:
                 # NOTE: discarding line
                 state = TemplateState.EntryPrefix
             else:
                 # still in book prefix, save line
                 bookPrefix.append(line)
         elif state == TemplateState.EntryPrefix:
-            if "%%EINTRAG_ANFANG%%" in line:
+            if markerStr + "EINTRAG-ANFANG" + markerStr in line:
                 # NOTE: discard line
                 state = TemplateState.Entry
             else:
                 # still in entry, save line
                 chapterPrefix.append(line)
         elif state == TemplateState.Entry:
-            if "%%EINTRAG_ENDE%%" in line:
+            if markerStr + "EINTRAG-ENDE" + markerStr in line:
                 # NOTE: discard line
                 state = TemplateState.ChapterPostfix
             else:
                 # still after entry in chapter, save line
                 entryTemplate.append(line)
         elif state == TemplateState.ChapterPostfix:
-            if "%%KAPITEL_ENDE%%" in line:
+            if markerStr + "KAPITEL-ENDE" + markerStr in line:
                 # NOTE: discard line
                 state = TemplateState.BookPostfix
             else:
                 # still after chapter in book, save line
                 chapterPostfix.append(line)
         elif state == TemplateState.BookPostfix:
-            if "%%BUCH_ENDE%%" in line:
+            if markerStr + "BUCH-ENDE" + markerStr in line:
                 ## NOTE: discard line
                 state = TemplateState.TemplatePostfix
             else:
@@ -116,30 +117,31 @@ if __name__ == '__main__':
         #TODO better warning message: which marker was not found?
         which = "ERROR"
         if state == TemplateState.TemplatePrefix:
-            which = "%%BUCH_ANFANG%%"
+            which = markerStr + "BUCH-ANFANG" + markerStr
         elif state == TemplateState.BookPrefix:
-            which = "%%KAPITEL_ANFANG%%"
+            which = markerStr + "KAPITEL-ANFANG" + markerStr
         elif state == TemplateState.EntryPrefix:
-            which = "%%EINTRAG_ANFANG%%"
+            which = markerStr + "EINTRAG-ANFANG" + markerStr
         elif state == TemplateState.Entry:
-            which = "%%EINTRAG_ENDE%%"
+            which = markerStr + "EINTRAG-ENDE" + markerStr
         elif state == TemplateState.ChapterPostfix:
-            which = "%%KAPITEL_ENDE%%"
+            which = markerStr + "KAPITEL-ENDE" + markerStr
         elif state == TemplateState.BookPostfix:
-            which = "%%BUCH_ENDE%%"
+            which = markerStr + "BUCH-ENDE" + markerStr
         elif state == TemplateState.TemplatePostfix:
             which = "EOF"   # NOTE: should never happen
         print("FEHLER: Markierung {} fehlt in der Vorlage -> Markierungen auf Vollständigkeit überprüfen.".format(which))
         sys.exit(3)
 
     # enerate output file
-    outFile.writelines(templatePrefix)
-    outFile.writelines(bookPrefix)
-    outFile.writelines(chapterPrefix)
-    outFile.writelines(entryTemplate)
+    outFile.writelines(templatePrefix)  # ERZEUGT-DATUM, DATEN-VERSION, DATEN-DATUM
+    outFile.writelines(bookPrefix)  # BUCH-TITEL, BUCH-NAME, BUCH-AUSGABE-JAHR, KAPITEL-VON, KAPITEL-BIS, KAPITEL-VON-DATUM, KAPITEL-BIS-DATUM
+    outFile.writelines(chapterPrefix)   # KAPITEL-NUMMER, KAPITEL-DATUM, KAPITEL-UHRZEIT
+    outFile.writelines(entryTemplate)   # VERS-VON, VERS-BIS, SPRECHER, INHALT  #TODO ??Überbegriff!Begriff??
     outFile.writelines(chapterPostfix)
-    outFile.writelines(bookPostfix)
+    outFile.writelines(bookPostfix) # AUTOREN   #TODO mit \\ oder , getrennt
     outFile.writelines(templatePostfix)
+    #../.git/ORIG_HEAD
     #TODO outFile.write(line.replace('old_text', 'new_text'))
     #TODO templatePrefix.popleft()
     outFile.close()
