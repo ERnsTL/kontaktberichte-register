@@ -8,6 +8,7 @@ from enum import Enum
 import sys
 import datetime
 import csv
+from os import path
 
 class TemplateState(Enum):
     TemplatePrefix = 1  # looking for book begin
@@ -149,7 +150,7 @@ if __name__ == '__main__':
     with open('../daten/meta.csv', 'r') as bookListFile:
         bookList = csv.DictReader(bookListFile, dialect=dialect)
         for book in bookList:
-            print(book['BUCH_TITEL_KURZ'], book['BUCH_TITEL'], book['BUCH_AUSGABE_JAHR'], book['KAPITEL_VON'], book['KAPITEL_BIS'], book['EINLEITUNG'])
+            #print(book['BUCH_TITEL_KURZ'], book['BUCH_TITEL'], book['BUCH_AUSGABE_JAHR'], book['KAPITEL_VON'], book['KAPITEL_BIS'], book['EINLEITUNG'])
             # read corresponding book meta file for chapter list
             bookTitle = book['BUCH_TITEL_KURZ']
             books.append(book)
@@ -174,15 +175,32 @@ if __name__ == '__main__':
             result = datetime.date.today().isoformat()
             line = line.replace(delimiter + "ERZEUGT-DATUM" + delimiter, result)
         if delimiter + "DATEN-VERSION" + delimiter in line:
-            with open("../.git/ORIG_HEAD", 'r') as f:
-                #TODO try..catch block resp. catch file open error
-                first_line = f.readline().rstrip()[:6]
-                line = line.replace(delimiter + "DATEN-VERSION" + delimiter, first_line)
-                # NOTE: closes file automatically at end of block
+            versionFile = "../daten/VERSION"
+            gitHeadFile = "../.git/ORIG_HEAD"
+            if path.isfile(versionFile):
+                with open(versionFile, 'r') as f:
+                    dataVersion = f.readline().rstrip().partition(" ")[0]
+                    line = line.replace(delimiter + "DATEN-VERSION" + delimiter, dataVersion)
+                    # NOTE: closes file automatically at end of block
+            elif path.isfile(gitHeadFile):
+                with open("../.git/ORIG_HEAD", 'r') as f:
+                    #TODO try..catch block resp. catch file open error
+                    first_line = f.readline().rstrip()[:6]
+                    line = line.replace(delimiter + "DATEN-VERSION" + delimiter, first_line)
+                    # NOTE: closes file automatically at end of block
+            else:
+                print("FEHLER: Konnte Daten-Version für Ersetzungsfeld DATEN-VERSION nicht finden -> genversion.sh starten oder git-Metadaten laden.")
         if delimiter + "DATEN-DATUM" + delimiter in line :
-            #TODO implement
-            line = line.replace(delimiter + "DATEN-DATUM" + delimiter, "TODO")
-        # else case
+            versionFile = "../daten/VERSION"
+            if path.isfile(versionFile):
+                with open(versionFile, 'r') as f:
+                    dataDate = f.readline().rstrip().partition(" ")[2]
+                    line = line.replace(delimiter + "DATEN-DATUM" + delimiter, dataDate)
+                    # NOTE: closes file automatically at end of block
+            #TODO implement alternative approach using just git files directly without genversion.sh
+            else:
+                print("FEHLER: Konnte Daten-Version für Ersetzungsfeld DATEN-DATUM nicht finden -> genversion.sh starten")
+        # else/default case
         if delimiter in line :
             print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
         outFile.writelines([line])
@@ -244,7 +262,7 @@ if __name__ == '__main__':
                 if entry["KAPITEL_NR"] != chapter["KAPITEL_NR"]:
                     continue
 
-                # entry; may contain VERS-VON, VERS-BIS, SPRECHER, INHALT  #TODO ??Überbegriff!Begriff?? für Stichwörter
+                # entries; may contain VERS-VON, VERS-BIS, SPRECHER, INHALT  #TODO ??Überbegriff!Begriff?? für Stichwörter
                 #TODO @ csv there is also: KAPITEL_NR - what to do with this?
                 for line in entryTemplate:
                     #if delimiter + "" + delimiter in line:
