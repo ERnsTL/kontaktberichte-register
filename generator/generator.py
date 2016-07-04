@@ -279,6 +279,33 @@ if __name__ == '__main__':
                         line = line.replace(delimiter + "SPRECHER" + delimiter, result)
                     if delimiter + "INHALT" + delimiter in line:
                         result = entry["INHALT"]
+                        # replace keyword markers
+                        # NOTE: for LaTeX: !!keyword!! into \index{keyword}
+                        numKeywordMarkers = result.count("!!")
+                        if numKeywordMarkers > 0:
+                            # sanity check
+                            if numKeywordMarkers % 2 != 0:
+                                print("FEHLER: Anzahl Ersetzungsfeld-Begrenzungen ('!!') ungerade in Inhalt von Eintrag KB {} V {} bis {}".format(entry["KAPITEL_NR"], entry["VERS_VON"], entry["VERS_BIS"]))
+                            else:
+                                while "!!" in result:
+                                    # separate out beginning
+                                    # NOTE: prefix ... !! rest ........
+                                    prefix = result.partition("!!")[0]
+                                    #print("prefix: {}".format(prefix))
+                                    right = result.partition("!!")[2]
+                                    #print("right: {}".format(right))
+                                    # find end in rest
+                                    # NOTE: keyword !! ... postfix
+                                    # NOTE: keyword can be further divided like this: [main-keyword]![sub-keyword]
+                                    keyword = right.partition("!!")[0]  #TODO sub-keywords for HTML
+                                    #print("keyword: {}".format(keyword))
+                                    postfix = right.partition("!!")[2]
+                                    #print("postfix: {}".format(postfix))
+                                    # put it together
+                                    #NOTE: To escape a single { or }, double it. The backlash is ecaped using regular backlash.
+                                    keywordReplaced = ("\\index{{{}}}".format(keyword) if args.format == "latex" else "TODO")
+                                    result = prefix + keywordReplaced + postfix
+                        #TODO stichworthervorhebung
                         line = line.replace(delimiter + "INHALT" + delimiter, result)
                     if delimiter in line :
                         print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
