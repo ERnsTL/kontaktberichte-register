@@ -1,2 +1,13 @@
 KAPITEL_NR	SONDER_SUFFIX	SONDER_NAME	DATUM	UHRZEIT	ORT	PERSONEN	EINTRAEGE_VON	EINTRAEGE_BIS	EINLEITUNG
-0a	sfath	Sfaths Erklärung	1945-02-03	12:10	?	Eduard, Sfath	1	191	Erklärung an den acht Jahre alten Eduard.
+0	a-sfath	Sfaths Erklärung	1945-02-03	12:10	?	Eduard, Sfath	1	191	Erklärung an den acht Jahre alten Eduard.
+1	a-einführung	Erste Unterhaltung / Einführungskonversation	1975-01-28	14:34	Hinwil	Billy, Semjase	1	22	Diese Konversation findet vor Semjases Erklärungen statt. Die Sätze sind nicht offiziell nummeriert, daher Semjases Sätze in Selbstregie nummeriert.
+1		Semjases Erklärungen	1975-01-28	14:34	Hinwil	Billy, Semjase	1	79	Diese Erklärungen sind Teil von KB1.
+2			1975-02-03	22:10		Billy, Semjase	1	75	
+3			1975-02-08	03:03		Billy, Semjase	1	53	
+4			1975-02-15	01:48		Billy, Semjase	1	116	
+5			1975-02-16	23:41		Billy, Semjase	1	195	
+6			1975-02-23	23:30		Billy, Semjase	1	121	
+7			1975-02-25	18:02		Billy, Semjase	1	252	
+7	a-auftrag1	Auftragsteil (1)	1975-02-25	18:02		Billy, Semjase	1	1	Dies ist nach dem KB7 eingefügt.
+7	b-auftrag2	Auftragsteil (2)	1975-02-25	18:02		Billy, Semjase	1	18	Dies ist nach dem KB7a = Auftragsteil 1 eingefügt.
+7	c-auftrag3	Auftragsteil (3)	1975-02-25	18:02		Billy, Semjase	1	46	Dies ist nach dem KB7b = Auftragsteil 2 eingefügt. Zusätzliche Erklärung bei Gedankenkontakt am 25. Februar 1975.
