@@ -1,3 +1,2 @@
-KAPITEL_NR	SONDER_SUFFIX	SONDER_NAME	DATUM	UHRZEIT	ORT	PERSONEN	EINLEITUNG
-1			1975-01-01	17:05	Hinterschmidrüti	Billy, Asket	Dies ist die Einleitung zu Kontaktbericht 1.
-2			1975-02-01	15:01	Hinterschmidrüti	Billy, Asket	Dies ist die Einleitung zu Kontaktbericht 2.
+KAPITEL_NR	SONDER_SUFFIX	SONDER_NAME	DATUM	UHRZEIT	ORT	PERSONEN	EINTRAEGE_VON	EINTRAEGE_BIS	EINLEITUNG
+0a	sfath	Sfaths Erklärung	1945-02-03	12:10	?	Eduard, Sfath	1	191	Erklärung an den acht Jahre alten Eduard.
