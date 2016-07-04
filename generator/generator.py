@@ -21,6 +21,7 @@ class TemplateState(Enum):
 if __name__ == '__main__':
     # NOTE: argparse stdlibrary docs @ https://docs.python.org/3/library/argparse.html#choices
     # NOTE: argparse howto @ https://docs.python.org/3/howto/argparse.html
+    #TODO the following arguments should have actual effect
     parser = argparse.ArgumentParser(description="Generiert ein Register der Kontaktberichte zur weiteren Verarbeitung.")
     group = parser.add_mutually_exclusive_group()
     group.add_argument("-v", "--verbose", action="store_true")
@@ -35,6 +36,7 @@ if __name__ == '__main__':
     parser.add_argument("-t", "--template", choices=["latex1", "html1"], default="latex1")  # TODO convert to file path
     #parser.add_argument("template", type=str, help="template name", default="latex1")
     #parser.add_argument("output", type=str, help="output file path", default="register.tex")
+    parser.add_argument("-a", "--authors", choices=['lines', 'commas'], default="lines")    #TODO Autoren mit \\ oder , getrennt -> Argument
     parser.add_argument("-o", "--output", type=str, help="output file path", default="register.tex")
     parser.add_argument("-V", "--version", action="store_true")
     args = parser.parse_args()
@@ -43,7 +45,6 @@ if __name__ == '__main__':
     if args.version:
         print("Version: 0.1.0 (2016-07-04)")
         sys.exit(0)
-    #print("OK, generiere {}".format(args.format))
 
     # parse template line by line, resulting in separate line lists for each part
     filename = ("main.tex" if args.format == "latex" else "index.html")
@@ -271,7 +272,7 @@ if __name__ == '__main__':
         # book postfix (no variables)
         outFile.writelines(bookPostfix)
 
-    # template postfix, may contain AUTOREN   #TODO Autoren mit \\ oder , getrennt
+    # template postfix, may contain AUTOREN
     for line in templatePostfix:
         if delimiter + "AUTOREN" + delimiter in line:
             #autorenSeparator = (" \\\\" if args.format == "latex" else "<br>")
