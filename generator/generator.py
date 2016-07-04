@@ -274,12 +274,17 @@ if __name__ == '__main__':
     # template postfix, may contain AUTOREN   #TODO Autoren mit \\ oder , getrennt
     for line in templatePostfix:
         if delimiter + "AUTOREN" + delimiter in line:
-            autorenSeparator = (" \\\\" if args.format == "latex" else "<br>")
+            #autorenSeparator = (" \\\\" if args.format == "latex" else "<br>")
             with open("../daten/AUTHORS", 'r') as autorenFile:
                 #TODO try..catch block resp. catch file open error
                 autoren = autorenFile.readlines()
-                autoren = [autor.rstrip() for autor in autoren]
-                line = line.replace(delimiter + "AUTOREN" + delimiter, (autorenSeparator + "\n").join(autoren))
+                autorenOut = ""
+                for autor in autoren:
+                    autor = autor.rstrip()
+                    autorenOut += line.replace(delimiter + "AUTOREN" + delimiter, autor)
+                    #autoren = [autor.rstrip() for autor in autoren]
+                #line = line.replace(delimiter + "AUTOREN" + delimiter, (autorenSeparator + "\n").join(autoren))
+                line = autorenOut
                 # NOTE: closes file automatically at end of block
         if delimiter in line :
             print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
