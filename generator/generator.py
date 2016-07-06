@@ -147,21 +147,42 @@ if __name__ == '__main__':
     chapters = {}
     entries = {}
     #TODO harmonize _ and - between csv <-> template
-    with open('../daten/meta.csv', 'r') as bookListFile:
-        bookList = csv.DictReader(bookListFile, dialect=dialect)
+    dataDir = "../daten/"
+    # Bücher/books
+    with open(dataDir + "buch.csv", 'r') as booksFile:
+        bookList = csv.DictReader(booksFile, dialect=dialect)
         for book in bookList:
-            #print(book['BUCH_TITEL_KURZ'], book['BUCH_TITEL'], book['BUCH_AUSGABE_JAHR'], book['KAPITEL_VON'], book['KAPITEL_BIS'], book['EINLEITUNG'])
-            # read corresponding book meta file for chapter list
-            bookTitle = book['BUCH_TITEL_KURZ']
+            bookTitle = book['BUCH-TITEL-KURZ']
             books.append(book)
-            bookMetaFileName = "../daten/{}_meta.csv".format(bookTitle.lower())
-            entriesFileName = "../daten/{}.csv".format(bookTitle.lower())
-            with open(bookMetaFileName, 'r') as bookMetaFile:
-                chapterList = csv.DictReader(bookMetaFile, dialect=dialect)
-                chapters[bookTitle] = list(chapterList)  # list copy
-            with open(entriesFileName, 'r') as entriesFile:
-                entriesList = csv.DictReader(entriesFile, dialect=dialect)
-                entries[bookTitle] = list(entriesList)   # list copy
+    # KB/chapters
+    with open(dataDir + "kb.csv", 'r') as chaptersFile:
+        chapterList = csv.DictReader(chaptersFile, dialect=dialect)
+        curBookIndex = 0
+        curBookLastKB = None
+        curBookKey = None
+        for chapter in chapterList:
+            # get new book info if info is empty/null/None
+            if curBookLastKB == None:
+                curBookLastKB = books[curBookIndex]["KB-BIS"]
+                curBookKey = books[curBookIndex]["TITEL-KURZ"]
+            elif chapters["NAME"] == curBookLastKB and curBookIndex < len(books)-1:
+                # get new book info if this is the last KB/chapter of the current book and if there is at least one more book
+                curBookIndex += 1
+                curBookLastKB = books[curBookIndex]["KB-BIS"]
+                curBookKey = books[curBookIndex]["TITEL-KURZ"]
+            else:
+                # currently somewhere in between first and last KB for current book, copy current KB to current book
+                chapters[curBookKey] = chapter
+    # Themen/subjects/entries
+    with open(dataDir + "thema.csv", 'r') as entriesFile:
+        entriesList = csv.DictReader(entriesFile, dialect=dialect)
+        for entry in entriesList:
+            chapterName = entry["KB"]
+            if chapterName not in entries:
+                # create entry for that chapter/KB
+                entries[chapterName] = []
+            # copy entry
+            entries[chapterName].append(entry)
 
     # generate output file
     #TODO check for unused/unneeded fields in template file and data files
