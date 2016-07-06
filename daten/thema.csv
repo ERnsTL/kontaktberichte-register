@@ -1,4 +1,4 @@
-KB-NAME	SATZ-VON	SATZ-BIS	SEITE-VON	SEITE-BIS	INHALT
-1	10	20	2	3	Askets Erklärung.
-1	21	30	4	5	Askets Erklärung Fortsetzung.
-2	1	10	6	7	Versehentliches Treffen mit Jitschi!!Kontaktpersonen!Jitschi!!.
+ID	KB	SATZ-VON	SATZ-BIS	INHALT
+1	1	Ask10	Ask20	Askets Erklärung.
+2	1	Ask21	Ask30	Askets Erklärung Fortsetzung.
+3	2	Sem1	Sem10	Versehentliches Treffen mit Jitschi!!Kontaktpersonen!Jitschi!!.

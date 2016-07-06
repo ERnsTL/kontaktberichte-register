@@ -1,39 +1,39 @@
 NAME	NUMMER	SONDER-SUFFIX	SONDER-TITEL	DATUM	ZEIT	ORT	PERSONEN	SAETZE-VON	SAETZE-BIS	EINLEITUNG
-0a-sfath	0	a-sfath	Sfaths Erklärung	1945-02-03	12:10		Eduard, Sfath	1	191	Erklärung an den acht Jahre alten Eduard.
-1a-einführung	1	a-einführung	Erste Unterhaltung / Einführungskonversation	1975-01-28	14:34	Hinwil	Billy, Semjase	1	22	Diese Konversation findet vor Semjases Erklärungen statt. Die Sätze sind nicht offiziell nummeriert, daher Semjases Sätze in Selbstregie nummeriert.
-1	1		Semjases Erklärungen	1975-01-28	14:34	Hinwil	Billy, Semjase	1	79	Diese Erklärungen sind Teil von KB1.
-2	2			1975-02-03	22:10		Billy, Semjase	1	75	
-3	3			1975-02-08	03:03		Billy, Semjase	1	53	
-4	4			1975-02-15	01:48		Billy, Semjase	1	116	
-5	5			1975-02-16	23:41		Billy, Semjase	1	195	
-6	6			1975-02-23	23:30		Billy, Semjase	1	121	
-7	7			1975-02-25	18:02		Billy, Semjase	1	252	
-7a-auftrag1	7	a-auftrag1	Auftragsteil (1)	1975-02-25	18:02		Billy, Semjase	1	1	Dies ist nach dem KB7 eingefügt.
-7b-auftrag2	7	b-auftrag2	Auftragsteil (2)	1975-02-25	18:02		Billy, Semjase	1	18	Dies ist nach dem KB7a = Auftragsteil 1 eingefügt.
-7c-auftrag3	7	c-auftrag3	Auftragsteil (3)	1975-02-25	18:02		Billy, Semjase	1	46	Dies ist nach dem KB7b = Auftragsteil 2 eingefügt. Zusätzliche Erklärung bei Gedankenkontakt am 25. Februar 1975 = KB12a.
-8	8			1975-03-18	15:04		Billy, Semjase	1	249	
-9	9			1975-03-21	16:18		Billy, Semjase	1	274	
-10	10			1975-03-26	15:20		Billy, Semjase	1	306	
-11	11			1975-04-15	15:40		Billy, Semjase	1	167	
-12	12			1975-04-20	03:11		Billy, Semjase	1	42	
-12a-gedanken	12	a-gedanken	Zusätzliche Ausführungen gedanklicher Übermittlung	1975-04-21	09:37		Billy, Semjase	1	80	Dies ist nach dem KB12 eingefügt.
-12b-besonderheiten	12	b-besonderheiten	Besonderheiten zu KB12	1975-04-20	03:11		Billy, Semjase	1	1	Einige Absätze an Besonderheiten zu KB12.
-13	13			1975-04-25	17:20		Billy, Semjase	1	50	
-14	14			1975-04-29	14:00		Billy, Semjase	1	82	
-15	15			1975-05-01	15:57		Billy, Semjase	1	128	
-16	16			1975-05-03	08:17		Billy, Semjase	1	41	
-17	17			1975-05-09	02:48		Billy, Semjase	1	125	
-18	18			1975-05-15	21:34		Billy, Semjase	1	169	
-19	19			1975-05-16	14:09		Billy, Semjase	1	26	
-20	20			1975-05-20	10:14		Billy, Semjase	1	100	
-21	21			1975-05-27	02:06		Billy, Semjase	1	52	
-22	22			1975-05-28	18:17		Billy, Semjase	1	129	
-23	23			1975-06-03	10:44		Billy, Semjase	1	173	
-24	24			1975-06-07	09:08		Billy, Semjase	1	97	
-25	25			1975-06-16	01:46		Billy, Semjase	1	108	
-26	26			1975-06-18	04:11		Billy, Semjase	1	73	
-27	27			1975-06-25	14:37		Billy, Semjase	1	48	
-28	28			1975-06-27	10:47		Billy, Semjase, Quetzal	1	78	
-29	29			1975-07-07	10:37		Billy, Semjase	1	166	
-30	30			1975-07-15	09:46		Billy, Semjase	1	41	Gedankenübermittlungskontakt.
-31	31			1975-07-17	10:14		Billy, Semjase, Ptaah, Asket, Nera	1	371	bis Semjase und bis Ptaah, Problem @ S245 ca., Asket ab S278, Nera ab S280, Ende KB31 auf S294
+0a-sfath	0	a-sfath	Sfaths Erklärung	1945-02-03	12:10		Eduard, Sfath	Sfa1	Sfa191	Erklärung an den acht Jahre alten Eduard.
+1a-einführung	1	a-einführung	Erste Unterhaltung / Einführungskonversation	1975-01-28	14:34	Hinwil	Billy, Semjase	Sem1	Sem22	Diese Konversation findet vor Semjases Erklärungen statt. Die Sätze sind nicht offiziell nummeriert, daher Semjases Sätze in Selbstregie nummeriert.
+1	1		Semjases Erklärungen	1975-01-28	14:34	Hinwil	Billy, Semjase	Sem1	Sem79	Diese Erklärungen sind Teil von KB1.
+2	2			1975-02-03	22:10		Billy, Semjase	Sem1	Sem75	
+3	3			1975-02-08	03:03		Billy, Semjase	Sem1	Sem53	
+4	4			1975-02-15	01:48		Billy, Semjase	Sem1	Sem116	
+5	5			1975-02-16	23:41		Billy, Semjase	Sem1	Sem195	
+6	6			1975-02-23	23:30		Billy, Semjase	Sem1	Sem121	
+7	7			1975-02-25	18:02		Billy, Semjase	Sem1	Sem252	
+7a-auftrag1	7	a-auftrag1	Auftragsteil (1)	1975-02-25	18:02		Billy, Semjase	Sem1	Sem1	Dies ist nach dem KB7 eingefügt.
+7b-auftrag2	7	b-auftrag2	Auftragsteil (2)	1975-02-25	18:02		Billy, Semjase	Sem1	Sem18	Dies ist nach dem KB7a = Auftragsteil 1 eingefügt.
+7c-auftrag3	7	c-auftrag3	Auftragsteil (3)	1975-02-25	18:02		Billy, Semjase	Sem1	Sem46	Dies ist nach dem KB7b = Auftragsteil 2 eingefügt. Zusätzliche Erklärung bei Gedankenkontakt am 25. Februar 1975 = KB12a.
+8	8			1975-03-18	15:04		Billy, Semjase	Sem1	Sem249	
+9	9			1975-03-21	16:18		Billy, Semjase	Sem1	Sem274	
+10	10			1975-03-26	15:20		Billy, Semjase	Sem1	Sem306	
+11	11			1975-04-15	15:40		Billy, Semjase	Sem1	Sem167	
+12	12			1975-04-20	03:11		Billy, Semjase	Sem1	Sem42	
+12a-gedanken	12	a-gedanken	Zusätzliche Ausführungen gedanklicher Übermittlung	1975-04-21	09:37		Billy, Semjase	Sem1	Sem80	Dies ist nach dem KB12 eingefügt.
+12b-besonderheiten	12	b-besonderheiten	Besonderheiten zu KB12	1975-04-20	03:11		Billy, Semjase	Sem1	Sem1	Einige Absätze an Besonderheiten zu KB12.
+13	13			1975-04-25	17:20		Billy, Semjase	Sem1	Sem50	
+14	14			1975-04-29	14:00		Billy, Semjase	Sem1	Sem82	
+15	15			1975-05-01	15:57		Billy, Semjase	Sem1	Sem128	
+16	16			1975-05-03	08:17		Billy, Semjase	Sem1	Sem41	
+17	17			1975-05-09	02:48		Billy, Semjase	Sem1	Sem125	
+18	18			1975-05-15	21:34		Billy, Semjase	Sem1	Sem169	
+19	19			1975-05-16	14:09		Billy, Semjase	Sem1	Sem26	
+20	20			1975-05-20	10:14		Billy, Semjase	Sem1	Sem100	
+21	21			1975-05-27	02:06		Billy, Semjase	Sem1	Sem52	
+22	22			1975-05-28	18:17		Billy, Semjase	Sem1	Sem129	
+23	23			1975-06-03	10:44		Billy, Semjase	Sem1	Sem173	
+24	24			1975-06-07	09:08		Billy, Semjase	Sem1	Sem97	
+25	25			1975-06-16	01:46		Billy, Semjase	Sem1	Sem108	
+26	26			1975-06-18	04:11		Billy, Semjase	Sem1	Sem73	
+27	27			1975-06-25	14:37		Billy, Semjase	Sem1	Sem48	
+28	28			1975-06-27	10:47		Billy, Semjase, Quetzal	Sem1	Que78	
+29	29			1975-07-07	10:37		Billy, Semjase	Sem1	Sem166	
+30	30			1975-07-15	09:46		Billy, Semjase	Sem1	Sem41	Gedankenübermittlungskontakt.
+31	31			1975-07-17	10:14		Billy, Semjase, Ptaah, Asket, Nera	Sem1	Sem371	
