@@ -44,7 +44,7 @@ if __name__ == '__main__':
     #TODO interactive mode
 
     if args.version:
-        print("Version: 0.1.0 (2016-07-04)")
+        print("Version: 1.0.0-alpha0.2.0 (2016-07-07)")
         sys.exit(0)
 
     # parse template line by line, resulting in separate line lists for each part
