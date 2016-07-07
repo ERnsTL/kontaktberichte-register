@@ -164,10 +164,10 @@ Tabelle Satz:
 
 * ```ID``` (*Primärschlüssel*) eine fortlaufende Nummer, derzeit unbenutzt
 <!--* ```NAME``` (*Primärschlüssel*) im Format ```KBx ABCy``` zB. ```KB31 Sem123```-->
-* ```NAME``` im Format ```AbcX``` zB. ```Sem123```
+* ```NAME``` im Format ```AbcX``` zB. ```Sem123```. Die ersten 3 Buchstaben den Sprechers sollen verwendet werden, dann kann der vollständige Name abgeleitet werden. Ausnahmen, leider: Taneta = Tae, Tanissa = Tai, Xeruala = Xal, Xeruel = Xel, Xeruela = Xea.
 * ```KB``` (KB-Name, nicht nur die Nummer)
 * ```REIHENFOLGE```
-* ```SPRECHER```
+* ```SPRECHER``` ausgeschriebener Name der ausserirdischen Kontaktperson
 * ```NUMMER```
 * ```PPK-SEITE```
 * ```SEM-SEITE```
