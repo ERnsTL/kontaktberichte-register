@@ -188,6 +188,13 @@ Das Anlegen eines neuen Buches läuft wie folgt ab:
 4. Die Themen des Kontakt in der Tabelle ```thema.csv``` eintragen.
 5. TODO Kontrollieren, ob alles abgedeckt wurde.
 
+Ablauf einer Vollständigkeitskontrolle:
+
+1. Die Liste der Bücher und die darin enthaltenen Angaben werden als korrekt angenommen.
+2. Für jedes Buch: Sind alle deklarierten KB vorhanden?
+3. Für jeden KB: Sind in der Tabelle Satz die Verse von und bis vorhanden und die Laufnummern dazwischen lückenlos? Auf Grund der Nicht-linearität ist leider keine vollständige Kontrolle möglich.
+4. Für jeden KB: Ist jeder Satz von genau einem Eintrag in der Tabelle Thema abgedeckt?
+
 
 ### Begründungen
 
