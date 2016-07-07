@@ -168,18 +168,17 @@ if __name__ == '__main__':
                 curBookKey = books[curBookIndex]["TITEL-KURZ"]
                 chapters[curBookKey] = []
                 foundBookLastKB = False
+            # copy current KB to current book
+            if args.verbose:
+                print("INFO: Buch {} hat neuen KB/Kapitel {}.".format(curBookKey, chapter["NAME"]))
+            chapters[curBookKey].append(chapter)
+            # get new book info if this is the last KB/chapter of the current book and if there is at least one more book
             if chapter["NAME"] == curBookLastKB and curBookIndex < len(books)-1:
-                # get new book info if this is the last KB/chapter of the current book and if there is at least one more book
                 curBookIndex += 1
                 curBookLastKB = books[curBookIndex]["KB-BIS"]
                 curBookKey = books[curBookIndex]["TITEL-KURZ"]
                 chapters[curBookKey] = []
                 foundBookLastKB = True
-            else:
-                # currently somewhere in between first and last KB for current book, copy current KB to current book
-                if args.verbose:
-                    print("INFO: Buch {} hat neuen KB/Kapitel {}.".format(curBookKey, chapter["NAME"]))
-                chapters[curBookKey].append(chapter)
         if foundBookLastKB == False and args.quiet == False:
             print("WARNUNG: Kontaktberichte fehlen: Zumindest letzter KB {} von Buch {} fehlt in KB-Tabelle.".format(curBookLastKB, curBookKey))
     # Themen/subjects/entries
