@@ -50,7 +50,7 @@ if __name__ == '__main__':
     # parse template line by line, resulting in separate line lists for each part
     filename = ("main.tex" if args.format == "latex" else "index.html")
     if args.format == "html":
-        print("FEHLER: HTML-Ausgabe noch unimplementiert. -> Bitte als Format 'latex' angeben.")
+        print("FEHLER: HTML-Ausgabe noch unimplementiert -> Bitte als Format 'latex' angeben.")
         sys.exit(1)
     templateFile = open("./vorlagen/{}/{}".format(args.template, filename), 'r')
     outFile = open(args.output, 'w')
@@ -152,7 +152,7 @@ if __name__ == '__main__':
     with open(dataDir + "buch.csv", 'r') as booksFile:
         bookList = csv.DictReader(booksFile, dialect=dialect)
         for book in bookList:
-            bookTitle = book['BUCH-TITEL-KURZ']
+            bookTitle = book["TITEL-KURZ"]
             books.append(book)
     # KB/chapters
     with open(dataDir + "kb.csv", 'r') as chaptersFile:
@@ -160,19 +160,28 @@ if __name__ == '__main__':
         curBookIndex = 0
         curBookLastKB = None
         curBookKey = None
+        foundBookLastKB = False
         for chapter in chapterList:
             # get new book info if info is empty/null/None
             if curBookLastKB == None:
                 curBookLastKB = books[curBookIndex]["KB-BIS"]
                 curBookKey = books[curBookIndex]["TITEL-KURZ"]
-            elif chapters["NAME"] == curBookLastKB and curBookIndex < len(books)-1:
+                chapters[curBookKey] = []
+                foundBookLastKB = False
+            if chapter["NAME"] == curBookLastKB and curBookIndex < len(books)-1:
                 # get new book info if this is the last KB/chapter of the current book and if there is at least one more book
                 curBookIndex += 1
                 curBookLastKB = books[curBookIndex]["KB-BIS"]
                 curBookKey = books[curBookIndex]["TITEL-KURZ"]
+                chapters[curBookKey] = []
+                foundBookLastKB = True
             else:
                 # currently somewhere in between first and last KB for current book, copy current KB to current book
-                chapters[curBookKey] = chapter
+                if args.verbose:
+                    print("INFO: Buch {} hat neuen KB/Kapitel {}.".format(curBookKey, chapter["NAME"]))
+                chapters[curBookKey].append(chapter)
+        if foundBookLastKB == False and args.quiet == False:
+            print("WARNUNG: Kontaktberichte fehlen: Zumindest letzter KB {} von Buch {} fehlt in KB-Tabelle.".format(curBookLastKB, curBookKey))
     # Themen/subjects/entries
     with open(dataDir + "thema.csv", 'r') as entriesFile:
         entriesList = csv.DictReader(entriesFile, dialect=dialect)
@@ -222,118 +231,126 @@ if __name__ == '__main__':
             else:
                 print("FEHLER: Konnte Daten-Version für Ersetzungsfeld DATEN-DATUM nicht finden -> genversion.sh starten")
         # else/default case
-        if delimiter in line :
+        if delimiter in line and args.quiet == False:
             print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
         outFile.writelines([line])
 
     # for each book...
     for book in books:
-        # book prefix; may contain BUCH-TITEL, BUCH-AUSGABE-JAHR, KAPITEL-VON, KAPITEL-BIS, KAPITEL-VON-DATUM, KAPITEL-BIS-DATUM
+        # book prefix; may contain TITEL, AUSGABE-JAHR, KB-VON, KB-BIS, KB-VON-DATUM, KB-BIS-DATUM
         for line in bookPrefix:
-            if delimiter + "BUCH-TITEL" + delimiter in line:
+            if delimiter + "TITEL" + delimiter in line:
                 #print("typ: {}".format(type(book).__name__))
-                result = book["BUCH_TITEL"]
-                line = line.replace(delimiter + "BUCH-TITEL" + delimiter, result)
-            if delimiter + "BUCH-AUSGABE-JAHR" + delimiter in line:
-                result = book["BUCH_AUSGABE_JAHR"]
-                line = line.replace(delimiter + "BUCH-AUSGABE-JAHR" + delimiter, result)
-            if delimiter + "KAPITEL-VON" + delimiter in line:
-                result = book["KAPITEL_VON"]
-                line = line.replace(delimiter + "KAPITEL-VON" + delimiter, result)
-            if delimiter + "KAPITEL-BIS" + delimiter in line:
-                result = book["KAPITEL_BIS"]
-                line = line.replace(delimiter + "KAPITEL-BIS" + delimiter, result)
-            if delimiter + "KAPITEL-VON-DATUM" + delimiter in line:
+                result = book["TITEL"]
+                line = line.replace(delimiter + "TITEL" + delimiter, result)
+            if delimiter + "AUSGABE-JAHR" + delimiter in line:
+                result = book["AUSGABE-JAHR"]
+                line = line.replace(delimiter + "AUSGABE-JAHR" + delimiter, result)
+            if delimiter + "KB-VON-NAME" + delimiter in line:
+                result = book["KB-VON"]
+                line = line.replace(delimiter + "KB-VON-NAME" + delimiter, result)
+            if delimiter + "KB-BIS-NAME" + delimiter in line:
+                result = book["KB-BIS"]
+                line = line.replace(delimiter + "KB-BIS-NAME" + delimiter, result)
+            if delimiter + "KB-VON-DATUM" + delimiter in line:
                 result = "TODO"    #TODO generate from chapters list
-                line = line.replace(delimiter + "KAPITEL-VON-DATUM" + delimiter, result)
-            if delimiter + "KAPITEL-BIS-DATUM" + delimiter in line:
+                line = line.replace(delimiter + "KB-VON-DATUM" + delimiter, result)
+            if delimiter + "KB-BIS-DATUM" + delimiter in line:
                 result = "TODO"   #TODO generate
-                line = line.replace(delimiter + "KAPITEL-BIS-DATUM" + delimiter, result)
-            if delimiter in line :
+                line = line.replace(delimiter + "KB-BIS-DATUM" + delimiter, result)
+            if delimiter in line and args.quiet == False:
                 print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
             outFile.writelines([line])
 
-        bookTitle = book["BUCH_TITEL_KURZ"]
-        for chapter in chapters[bookTitle]:
-            # chapter prefix; may contain KAPITEL-NR, KAPITEL-DATUM, KAPITEL-UHRZEIT, PERSONEN, EINLEITUNG
-            #TODO @ csv: SONDER_SUFFIX, SONDER_NAME
-            for line in chapterPrefix:
-                if delimiter + "KAPITEL-NUMMER" + delimiter in line:
-                    result = chapter["KAPITEL_NR"]  #TODO harmonize name csv <-> template
-                    line = line.replace(delimiter + "KAPITEL-NUMMER" + delimiter, result)
-                if delimiter + "KAPITEL-DATUM" + delimiter in line:
-                    result = chapter["DATUM"]   #TODO harmonize name csv <-> template
-                    line = line.replace(delimiter + "KAPITEL-DATUM" + delimiter, result)
-                if delimiter + "KAPITEL-UHRZEIT" + delimiter in line:
-                    result = chapter["UHRZEIT"]   #TODO harmonize name csv <-> template
-                    line = line.replace(delimiter + "KAPITEL-UHRZEIT" + delimiter, result)
-                if delimiter + "PERSONEN" + delimiter in line:
-                    result = chapter["PERSONEN"]
-                    line = line.replace(delimiter + "PERSONEN" + delimiter, result)
-                if delimiter + "EINLEITUNG" + delimiter in line:
-                    result = chapter["EINLEITUNG"]
-                    line = line.replace(delimiter + "EINLEITUNG" + delimiter, result)
-                if delimiter in line :
-                    print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
-                outFile.writelines([line])
-
-            for entry in entries[bookTitle]:
-                # only print entries for this chapter/KB
-                #TODO key error may arise for special suffixes etc. KAPITEL_NR here is misleading, it is actually NR+SPECIAL_SUFFIX if present
-                if entry["KAPITEL_NR"] != chapter["KAPITEL_NR"]:
-                    continue
-
-                # entries; may contain VERS-VON, VERS-BIS, SPRECHER, INHALT  #TODO ??Überbegriff!Begriff?? für Stichwörter
-                #TODO @ csv there is also: KAPITEL_NR - what to do with this?
-                for line in entryTemplate:
-                    #if delimiter + "" + delimiter in line:
-                    #    result = chapter[""]
-                    #    line = line.replace(delimiter + "" + delimiter, result)
-                    if delimiter + "VERS-VON" + delimiter in line:
-                        result = entry["VERS_VON"]
-                        line = line.replace(delimiter + "VERS-VON" + delimiter, result)
-                    if delimiter + "VERS-BIS" + delimiter in line:
-                        result = entry["VERS_BIS"]
-                        line = line.replace(delimiter + "VERS-BIS" + delimiter, result)
-                    if delimiter + "SPRECHER" + delimiter in line:
-                        result = entry["SPRECHER"]
-                        line = line.replace(delimiter + "SPRECHER" + delimiter, result)
-                    if delimiter + "INHALT" + delimiter in line:
-                        result = entry["INHALT"]
-                        # replace keyword markers
-                        # NOTE: for LaTeX: !!keyword!! into \index{keyword}
-                        numKeywordMarkers = result.count("!!")
-                        if numKeywordMarkers > 0:
-                            # sanity check
-                            if numKeywordMarkers % 2 != 0:
-                                print("FEHLER: Anzahl Ersetzungsfeld-Begrenzungen ('!!') ungerade in Inhalt von Eintrag KB {} V {} bis {}".format(entry["KAPITEL_NR"], entry["VERS_VON"], entry["VERS_BIS"]))
-                            else:
-                                while "!!" in result:
-                                    # separate out beginning
-                                    # NOTE: prefix ... !! rest ........
-                                    prefix = result.partition("!!")[0]
-                                    #print("prefix: {}".format(prefix))
-                                    right = result.partition("!!")[2]
-                                    #print("right: {}".format(right))
-                                    # find end in rest
-                                    # NOTE: keyword !! ... postfix
-                                    # NOTE: keyword can be further divided like this: [main-keyword]![sub-keyword]
-                                    keyword = right.partition("!!")[0]  #TODO sub-keywords for HTML
-                                    #print("keyword: {}".format(keyword))
-                                    postfix = right.partition("!!")[2]
-                                    #print("postfix: {}".format(postfix))
-                                    # put it together
-                                    #NOTE: To escape a single { or }, double it. The backlash is ecaped using regular backlash.
-                                    keywordReplaced = ("\\index{{{}}}".format(keyword) if args.format == "latex" else "TODO")
-                                    result = prefix + keywordReplaced + postfix
-                        #TODO stichworthervorhebung
-                        line = line.replace(delimiter + "INHALT" + delimiter, result)
-                    if delimiter in line :
+        # chapter prefix; may contain KAPITEL-NAME, KAPITEL-DATUM, KAPITEL-ZEIT, PERSONEN, EINLEITUNG
+        #TODO also @ csv: SONDER-SUFFIX, SONDER-NAME
+        curBook = book["TITEL-KURZ"]
+        if curBook in chapters:
+            for chapter in chapters[curBook]:
+                for line in chapterPrefix:
+                    if delimiter + "NAME" + delimiter in line:
+                        result = chapter["NAME"]  #TODO harmonize name csv <-> template
+                        line = line.replace(delimiter + "NAME" + delimiter, result)
+                    if delimiter + "DATUM" + delimiter in line:
+                        result = chapter["DATUM"]   #TODO harmonize name csv <-> template
+                        line = line.replace(delimiter + "DATUM" + delimiter, result)
+                    if delimiter + "ZEIT" + delimiter in line:
+                        result = chapter["ZEIT"]   #TODO harmonize name csv <-> template
+                        line = line.replace(delimiter + "ZEIT" + delimiter, result)
+                    if delimiter + "PERSONEN" + delimiter in line:
+                        result = chapter["PERSONEN"]
+                        line = line.replace(delimiter + "PERSONEN" + delimiter, result)
+                    if delimiter + "EINLEITUNG" + delimiter in line:
+                        result = chapter["EINLEITUNG"]
+                        line = line.replace(delimiter + "EINLEITUNG" + delimiter, result)
+                    if delimiter in line and args.quiet == False:
                         print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
                     outFile.writelines([line])
 
-            # chapter postfix (no variables)
-            outFile.writelines(chapterPostfix)
+                # entries; may contain SATZ-VON, SATZ-BIS, SPRECHER, INHALT
+                #TODO @ csv there is also: KB (not needed in this case, because entry list is already filtered by KB/chapter)
+                curChapter = chapter["NAME"]
+                if curChapter in entries:
+                    for entry in entries[curChapter]:
+                        for line in entryTemplate:
+                            #if delimiter + "" + delimiter in line:
+                            #    result = chapter[""]
+                            #    line = line.replace(delimiter + "" + delimiter, result)
+                            if delimiter + "SATZ-VON" + delimiter in line:
+                                result = entry["SATZ-VON"]
+                                line = line.replace(delimiter + "SATZ-VON" + delimiter, result)
+                            if delimiter + "SATZ-BIS" + delimiter in line:
+                                result = entry["SATZ-BIS"]
+                                line = line.replace(delimiter + "SATZ-BIS" + delimiter, result)
+                            if delimiter + "SEITE-VON-BIS" + delimiter in line:
+                                result = "TODO"    #TODO berechnetes Feld
+                                line = line.replace(delimiter + "SEITE-VON-BIS" + delimiter, result)
+                            if delimiter + "SPRECHER" + delimiter in line:
+                                #TODO berechnetes Feld aus SATZ-Tabelle
+                                result = "TODO"
+                                line = line.replace(delimiter + "SPRECHER" + delimiter, result)
+                            if delimiter + "INHALT" + delimiter in line:
+                                result = entry["INHALT"]
+                                # replace keyword markers
+                                # NOTE: for LaTeX: !!keyword!! into \index{keyword}
+                                numKeywordMarkers = result.count("!!")
+                                if numKeywordMarkers > 0:
+                                    # sanity check
+                                    if numKeywordMarkers % 2 != 0:
+                                        print("FEHLER: Anzahl Ersetzungsfeld-Begrenzungen ('!!') ungerade in Inhalt von Eintrag KB {} V {} bis {}".format(entry["KAPITEL_NR"], entry["VERS_VON"], entry["VERS_BIS"]))
+                                    else:
+                                        while "!!" in result:
+                                            # separate out beginning
+                                            # NOTE: prefix ... !! rest ........
+                                            prefix = result.partition("!!")[0]
+                                            #print("prefix: {}".format(prefix))
+                                            right = result.partition("!!")[2]
+                                            #print("right: {}".format(right))
+                                            # find end in rest
+                                            # NOTE: keyword !! ... postfix
+                                            # NOTE: keyword can be further divided like this: [main-keyword]![sub-keyword]
+                                            keyword = right.partition("!!")[0]  #TODO sub-keywords for HTML
+                                            #print("keyword: {}".format(keyword))
+                                            postfix = right.partition("!!")[2]
+                                            #print("postfix: {}".format(postfix))
+                                            # put it together
+                                            #NOTE: To escape a single { or }, double it. The backlash is ecaped using regular backlash.
+                                            keywordReplaced = ("\\index{{{}}}".format(keyword) if args.format == "latex" else "TODO")
+                                            result = prefix + keywordReplaced + postfix
+                                #TODO stichworthervorhebung
+                                line = line.replace(delimiter + "INHALT" + delimiter, result)
+                            if delimiter in line and args.quiet == False:
+                                print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
+                            outFile.writelines([line])
+                else:
+                    if args.quiet == False:
+                        print("WARNUNG: Keine Einträge für KB {} in Thema-Tabelle vorhanden -> Bitte Daten ergänzen.".format(curChapter))
+
+                # chapter postfix (no variables)
+                outFile.writelines(chapterPostfix)
+        else:
+            if args.quiet == False:
+                print("WARNUNG: Keine Einträge für Buch {} in KB-Tabelle vorhanden -> Bitte Daten ergänzen.".format(curBook))
 
         # book postfix (no variables)
         outFile.writelines(bookPostfix)
