@@ -249,24 +249,26 @@ Daten-Version: !!DATEN-VERSION!! von !!DATEN-DATUM!!
 \mainmatter
 
 !!BUCH-ANFANG!!
-\chapter*{!!BUCH-TITEL!!}
-\addcontentsline{toc}{chapter}{!!BUCH-TITEL!!}
+\chapter*{!!TITEL!!}
+\addcontentsline{toc}{chapter}{!!TITEL!!}
 
-Bezogen auf Ausgabe !!BUCH-AUSGABE-JAHR!!. Enthält die Kontaktberichte !!KAPITEL-VON!! bis !!KAPITEL-BIS!! aus Zeitraum !!KAPITEL-VON-DATUM!! bis !!KAPITEL-BIS-DATUM!!.
+Bezogen auf Ausgabe !!AUSGABE-JAHR!!. Enthält die Kontaktberichte !!KB-VON-NAME!! bis !!KB-BIS-NAME!! aus Zeitraum !!KB-VON-DATUM!! bis !!KB-BIS-DATUM!!.
 
 
 
 !!KAPITEL-ANFANG!!
-\section{KB !!KAPITEL-NUMMER!! vom !!KAPITEL-DATUM!! !!KAPITEL-UHRZEIT!!}
+\section{KB!!NAME!! von !!DATUM!! !!ZEIT!!}
 
-Sprecher: !!PERSONEN!!. !!EINLEITUNG!!
+Personen: !!PERSONEN!!. !!EINLEITUNG!!
 
 \tabulinesep = 1.5mm
 \extrarowsep = 0mm
-\begin{longtabu} to \linewidth {rrlX}
+%\begin{longtabu} to \linewidth {rrlX}
+\begin{longtabu} to \linewidth {rrrX}
 
 
-\rowfont\bfseries V & S & Sprecher & Inhalt \\ \hline
+%\rowfont\bfseries V & S & Sprecher & Inhalt \\ \hline
+\rowfont\bfseries von & bis & S & Inhalt \\ \hline
 \endhead
 
 %\\ \hline
@@ -279,7 +281,8 @@ Sprecher: !!PERSONEN!!. !!EINLEITUNG!!
 \endlastfoot
 
 !!EINTRAG-ANFANG!!
-!!VERS-VON!! & !!VERS-BIS!! & !!SPRECHER!! & !!INHALT!! \\
+%!!SATZ-VON!! & !!SATZ-BIS!! & !!SPRECHER!! & !!INHALT!! \\
+!!SATZ-VON!! & !!SATZ-BIS!! & !!SEITE-VON-BIS!! & !!INHALT!! \\
 !!EINTRAG-ENDE!!
 \end{longtabu}
 
