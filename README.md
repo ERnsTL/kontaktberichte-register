@@ -180,6 +180,14 @@ Tabelle Thema:
 * ```SATZ-BIS``` (Name, nicht nur die Nummer)
 * ```INHALT``` (kurze Inhaltsangabe inkl. hervorgehobene Stichwörter für das alphabetische Stichwortregister) - zusammengefasst zwecks einfacherer Eingabe (kein Hin- und Herwechseln zwischen separaten INHALT- und STICHWOERTER-Feldern)
 
+Das Anlegen eines neuen Buches läuft wie folgt ab:
+
+1. Das Buch in der Tabelle ```buch.csv``` anlegen.
+2. Die Kontaktberichte in der Tabelle ```kb.csv``` eintragen.
+3. Die Sätze des Kontakts in der Tabelle ```satz.csv``` anlegen.
+4. Die Themen des Kontakt in der Tabelle ```thema.csv``` eintragen.
+5. TODO Kontrollieren, ob alles abgedeckt wurde.
+
 
 ### Begründungen
 
