@@ -370,7 +370,7 @@ if __name__ == '__main__':
                 #line = line.replace(delimiter + "AUTOREN" + delimiter, (autorenSeparator + "\n").join(autoren))
                 line = autorenOut
                 # NOTE: closes file automatically at end of block
-        if delimiter in line :
+        if delimiter in line and args.quiet == False:
             print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
         outFile.writelines([line])
 
