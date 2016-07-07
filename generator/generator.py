@@ -199,7 +199,7 @@ if __name__ == '__main__':
     #        result =
     #        line = line.replace(delimiter + "" + delimiter, result)
 
-    # template prefix; may contain ERZEUGT-DATUM, DATEN-VERSION, DATEN-DATUM    #TODO ../.git/ORIG_HEAD
+    # template prefix; may contain ERZEUGT-DATUM, DATEN-VERSION, DATEN-DATUM, DATEN-DATUMZEIT    #TODO ../.git/ORIG_HEAD
     for line in templatePrefix:
         if delimiter + "ERZEUGT-DATUM" + delimiter in line:
             result = datetime.date.today().isoformat()
@@ -220,11 +220,21 @@ if __name__ == '__main__':
                     # NOTE: closes file automatically at end of block
             else:
                 print("FEHLER: Konnte Daten-Version für Ersetzungsfeld DATEN-VERSION nicht finden -> genversion.sh starten oder git-Metadaten laden.")
+        if delimiter + "DATEN-DATUMZEIT" + delimiter in line :
+            versionFile = "../daten/VERSION"
+            if path.isfile(versionFile):
+                with open(versionFile, 'r') as f:
+                    dataDateTime = f.readline().rstrip().partition(" ")[2]
+                    line = line.replace(delimiter + "DATEN-DATUMZEIT" + delimiter, dataDateTime)
+                    # NOTE: closes file automatically at end of block
+            #TODO implement alternative approach using just git files directly without genversion.sh
+            else:
+                print("FEHLER: Konnte Daten-Version für Ersetzungsfeld DATEN-DATUMZEIT nicht finden -> genversion.sh starten")
         if delimiter + "DATEN-DATUM" + delimiter in line :
             versionFile = "../daten/VERSION"
             if path.isfile(versionFile):
                 with open(versionFile, 'r') as f:
-                    dataDate = f.readline().rstrip().partition(" ")[2]
+                    dataDate = f.readline().rstrip().partition(" ")[2].partition(" ")[0]
                     line = line.replace(delimiter + "DATEN-DATUM" + delimiter, dataDate)
                     # NOTE: closes file automatically at end of block
             #TODO implement alternative approach using just git files directly without genversion.sh
