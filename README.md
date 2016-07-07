@@ -183,12 +183,17 @@ Tabelle Thema:
 
 ### Begründungen
 
+Wenn es Vorteile hat, etwas anders zu machen oder zu ändern oder wenn eine der Begründungen nicht (mehr) stimmt, dann kann das natürlich geändert werden. Erstelle in so einem Fall am Besten eine Änderungsanfrage (englisch: *Issue*) oben im Menü auf dieser Seite.
 
 #### Wahl der Programmiersprache
 
 Deutsch | English
 --- | ---
 Python TODO
+
+#### Öffentliches Projekt
+
+TODO
 
 #### Wahl von git und Github als Basis
 
@@ -273,3 +278,11 @@ Aus diesen Gründen würde, zumindest vorerst, etwas gewählt, das in den Vorlag
 Der Inhalt der Felder ist grösstenteils aus den Datendateien, einige werden berechnet (zB. die Sprecherliste je KB).
 
 Die Datendateien selbst sind so ausgelegt, dass sich auch andere Bücherreihen damit indizieren lassen, zB. die Geisteslehrbriefe, für die ein Stichwortverzeichnis sehr hilfreich wäre.
+
+#### Format der Stichwörter-Hervorhebung
+
+TODO
+
+#### Datum auf der Titelseite
+
+TODO Datum auf der Titelseite zeigt nicht das Erzeugungsdatum, sondern das Datum der letzten Änderung der zu Grunde liegenden Daten.
