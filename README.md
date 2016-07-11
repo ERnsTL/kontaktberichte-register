@@ -192,7 +192,7 @@ Ablauf einer Vollständigkeitskontrolle:
 
 1. Die Liste der Bücher und die darin enthaltenen Angaben werden als korrekt angenommen.
 2. Für jedes Buch: Sind alle deklarierten KB vorhanden?
-3. Für jeden KB: Sind in der Tabelle Satz die Verse von und bis vorhanden und die Laufnummern dazwischen lückenlos? Auf Grund der Nicht-linearität ist leider keine vollständige Kontrolle möglich.
+3. Für jeden KB: Sind in der Tabelle Satz die Verse von und bis vorhanden und die Laufnummern dazwischen lückenlos? Auf Grund der Nicht-linearität ist leider keine vollständige Kontrolle möglich. Nur vom letzten Sprecher wird die Vers-bis-Information gespeichert, aber nicht die höchste Versnummer jedes Sprechers.
 4. Für jeden KB: Ist jeder Satz von genau einem Eintrag in der Tabelle Thema abgedeckt?
 
 
