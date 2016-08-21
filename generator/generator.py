@@ -9,6 +9,7 @@ import sys
 import datetime
 import csv
 from os import path
+import re
 
 class TemplateState(Enum):
     TemplatePrefix = 1  # looking for book begin
@@ -271,7 +272,7 @@ if __name__ == '__main__':
                 print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
             outFile.writelines([line])
 
-        # chapter prefix; may contain KAPITEL-NAME, KAPITEL-DATUM, KAPITEL-ZEIT, PERSONEN, EINLEITUNG
+        # chapter prefix; may contain NAME, DATUM, ZEIT, PERSONEN, EINLEITUNG
         #TODO also @ csv: SONDER-SUFFIX, SONDER-NAME
         curBook = book["TITEL-KURZ"]
         if curBook in chapters:
@@ -325,27 +326,34 @@ if __name__ == '__main__':
                                 numKeywordMarkers = result.count("!!")
                                 if numKeywordMarkers > 0:
                                     # sanity check
-                                    if numKeywordMarkers % 2 != 0:
-                                        print("FEHLER: Anzahl Ersetzungsfeld-Begrenzungen ('!!') ungerade in Inhalt von Eintrag KB {} V {} bis {}".format(entry["KAPITEL_NR"], entry["VERS_VON"], entry["VERS_BIS"]))
-                                    else:
-                                        while "!!" in result:
-                                            # separate out beginning
-                                            # NOTE: prefix ... !! rest ........
-                                            prefix = result.partition("!!")[0]
-                                            #print("prefix: {}".format(prefix))
-                                            right = result.partition("!!")[2]
-                                            #print("right: {}".format(right))
-                                            # find end in rest
-                                            # NOTE: keyword !! ... postfix
-                                            # NOTE: keyword can be further divided like this: [main-keyword]![sub-keyword]
-                                            keyword = right.partition("!!")[0]  #TODO sub-keywords for HTML
-                                            #print("keyword: {}".format(keyword))
-                                            postfix = right.partition("!!")[2]
-                                            #print("postfix: {}".format(postfix))
-                                            # put it together
-                                            #NOTE: To escape a single { or }, double it. The backlash is ecaped using regular backlash.
-                                            keywordReplaced = ("\\index{{{}}}".format(keyword) if args.format == "latex" else "TODO")
-                                            result = prefix + keywordReplaced + postfix
+                                    # NOTE: python regex howto @ https://docs.python.org/3/howto/regex.html
+                                    # NOTE: regex tester @ http://www.regexr.com/
+                                    # remove all correct keyword matches
+                                    result = re.sub('(!![^!]+?(![^!]+?)?!!)', "", result)
+                                    # if there are still any left, then those are the uncorrect ones - report error
+                                    if result.count("!") > 0:
+                                        print("FEHLER: Abwegige Rufzeichen in Inhalt von Eintrag KB {} V {} bis {}: Position: {}".format(entry["KB"], entry["SATZ-VON"], entry["SATZ-BIS"], result))
+                                        sys.exit(3)
+
+                                    # process keyword markers
+                                    while "!!" in result:
+                                        # separate out beginning
+                                        # NOTE: prefix ... !! rest ........
+                                        prefix = result.partition("!!")[0]
+                                        #print("prefix: {}".format(prefix))
+                                        right = result.partition("!!")[2]
+                                        #print("right: {}".format(right))
+                                        # find end in rest
+                                        # NOTE: keyword !! ... postfix
+                                        # NOTE: keyword can be further divided like this: [main-keyword]![sub-keyword]
+                                        keyword = right.partition("!!")[0]  #TODO sub-keywords for HTML
+                                        #print("keyword: {}".format(keyword))
+                                        postfix = right.partition("!!")[2]
+                                        #print("postfix: {}".format(postfix))
+                                        # put it together
+                                        #NOTE: To escape a single { or }, double it. The backlash is ecaped using regular backlash.
+                                        keywordReplaced = ("\\index{{{}}}".format(keyword) if args.format == "latex" else "TODO")
+                                        result = prefix + keywordReplaced + postfix
                                 #TODO stichworthervorhebung
                                 line = line.replace(delimiter + "INHALT" + delimiter, result)
                             if delimiter in line and args.quiet == False:
