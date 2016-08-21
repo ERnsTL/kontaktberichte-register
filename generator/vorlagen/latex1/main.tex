@@ -112,27 +112,6 @@
 }
 \newcommand*{\Package}[1]{\texttt{#1}}%
 
-% hyperlinks
-%   en.wikibooks.org/wiki/LaTeX/Hyperlinks
-\usepackage[unicode=true,pagebackref=false]{hyperref}
-\hypersetup{
-    breaklinks=true,
-    %bookmarks=true,
-    linktoc=all,            % none,section,page,all
-    pdfauthor={Die Kontaktberichte-Register-Autoren},
-    pdftitle={Kontaktberichte-Register},
-    pdfsubject={Thema},
-    pdfkeywords={keyword1} {keyword2} {keyword3},
-    colorlinks=true,
-    urlcolor=blue,          % external links
-    linkcolor=black,        % internal links
-    linkbordercolor=red,
-    citecolor=black,        % links to bibliography
-    filecolor=magenta,      % file links
-    pdfborder={0 0 0}
-}
-\urlstyle{same}  %do not use monospace font for urls
-
 % font (only for XeTeX and LuaTeX)
 \usepackage{fontspec}
 %\setmainfont{Droid Sans}   % enthält keine kursive Schrift
@@ -193,6 +172,29 @@
 % Handbuch @ http://mirror.easyname.at/ctan/macros/latex/contrib/imakeidx/imakeidx.pdf
 % Stichwortverzeichnis initialisieren
 \makeindex[title=Stichwortverzeichnis,intoc=true]
+
+% hyperlinks
+%   en.wikibooks.org/wiki/LaTeX/Hyperlinks
+%   http://www.golatex.de/verlinktes-inhaltsverzeichnis-texniccenter-t2281.html
+%   -> load as last as it redefines index-related commands
+\usepackage[unicode=true,pagebackref=false]{hyperref}
+\hypersetup{
+    breaklinks=true,
+    %bookmarks=true,
+    linktoc=all,            % none,section,page,all
+    pdfauthor={Die Kontaktberichte-Register-Autoren},
+    pdftitle={Kontaktberichte-Register},
+    pdfsubject={Thema},
+    pdfkeywords={keyword1} {keyword2} {keyword3},
+    colorlinks=true,
+    urlcolor=blue,          % external links
+    linkcolor=black,        % internal links
+    linkbordercolor=red,
+    citecolor=black,        % links to bibliography
+    filecolor=magenta,      % file links
+    pdfborder={0 0 0}
+}
+\urlstyle{same}  %do not use monospace font for urls
 
 % meta information
 \title{Kontaktberichte-Register \\ --- \\ \Large{Nummern 1 bis 541}}
