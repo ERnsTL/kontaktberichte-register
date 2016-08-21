@@ -329,10 +329,10 @@ if __name__ == '__main__':
                                     # NOTE: python regex howto @ https://docs.python.org/3/howto/regex.html
                                     # NOTE: regex tester @ http://www.regexr.com/
                                     # remove all correct keyword matches
-                                    result = re.sub('(!![^!]+?(![^!]+?)?!!)', "", result)
+                                    resultCheck = re.sub('(!![^!]+?(![^!]+?)?!!)', "", result)
                                     # if there are still any left, then those are the uncorrect ones - report error
-                                    if result.count("!") > 0:
-                                        print("FEHLER: Abwegige Rufzeichen in Inhalt von Eintrag KB {} V {} bis {}: Position: {}".format(entry["KB"], entry["SATZ-VON"], entry["SATZ-BIS"], result))
+                                    if resultCheck.count("!") > 0:
+                                        print("FEHLER: Abwegige Rufzeichen in Inhalt von Eintrag KB {} V {} bis {}: Position: {}".format(entry["KB"], entry["SATZ-VON"], entry["SATZ-BIS"], resultCheck))
                                         sys.exit(3)
 
                                     # process keyword markers
