@@ -179,7 +179,7 @@ if __name__ == '__main__':
                 curBookIndex += 1
                 curBookLastKB = books[curBookIndex]["KB-BIS"]
                 curBookKey = books[curBookIndex]["TITEL-KURZ"]
-                chapters[curBookKey] = []
+                chapters[curBookKey] = []   #TODO this creates empty entry for next book, even if that has no entries at all, might be misleading
                 foundBookLastKB = True
         if foundBookLastKB == False and args.quiet == False:
             print("WARNUNG: Kontaktberichte fehlen: Zumindest letzter KB {} von Buch {} fehlt in KB-Tabelle.".format(curBookLastKB, curBookKey))
