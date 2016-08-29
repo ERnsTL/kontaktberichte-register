@@ -147,6 +147,7 @@ if __name__ == '__main__':
     books = []  # NOTE: using list because it is ordered as is iterating over it
     chapters = {}
     entries = {}
+    sentences = {}
     #TODO harmonize _ and - between csv <-> template
     dataDir = "../daten/"
     # Bücher/books
@@ -192,6 +193,16 @@ if __name__ == '__main__':
                 entries[chapterName] = []
             # copy entry
             entries[chapterName].append(entry)
+    # Sätze/Verse/sentences index
+    with open(dataDir + "satz.csv", 'r') as sentencesFile:
+        sentencesList = csv.DictReader(sentencesFile, dialect=dialect)
+        for sentence in sentencesList:
+            chapterName = sentence["KB"]
+            if chapterName not in sentences:
+                # create entry for that chapter/KB
+                sentences[chapterName] = []
+            # copy entry
+            sentences[chapterName].append(sentence)
 
     # generate output file
     #TODO check for unused/unneeded fields in template file and data files
@@ -297,7 +308,7 @@ if __name__ == '__main__':
                         print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
                     outFile.writelines([line])
 
-                # entries; may contain SATZ-VON, SATZ-BIS, SPRECHER, INHALT
+                # entries; may contain SATZ-VON, SATZ-BIS, SEITE-VON, SEITE-VON-BIS, INHALT
                 #TODO @ csv there is also: KB (not needed in this case, because entry list is already filtered by KB/chapter)
                 curChapter = chapter["NAME"]
                 if curChapter in entries:
@@ -312,8 +323,32 @@ if __name__ == '__main__':
                             if delimiter + "SATZ-BIS" + delimiter in line:
                                 result = entry["SATZ-BIS"]
                                 line = line.replace(delimiter + "SATZ-BIS" + delimiter, result)
-                            if delimiter + "SEITE-VON-BIS" + delimiter in line:
+                            if delimiter + "SEITE-VON" + delimiter in line:
                                 result = "TODO"    #TODO berechnetes Feld
+                                line = line.replace(delimiter + "SEITE-VON-BIS" + delimiter, result)
+                            if delimiter + "SEITE-VON-BIS" + delimiter in line:
+                                #TODO sanity checks:
+                                #TODO does sentences[curChapter] exist?
+                                #TODO does NAME field exist before comparison?
+                                #TODO check if found, otherwise warning
+                                # find start sentence and get page number
+                                pageStart = 0
+                                for sentence in sentences[curChapter]:
+                                    if sentence["NAME"] == entry["SATZ-VON"]:
+                                        pageStart = sentence["PPK-SEITE"]
+                                        break
+                                # find end sentence and get page number
+                                pageEnd = 0
+                                for sentence in sentences[curChapter]:
+                                    if sentence["NAME"] == entry["SATZ-VON"]:
+                                        pageEnd = sentence["PPK-SEITE"]
+                                        break
+                                # generate result
+                                if pageStart != pageEnd:
+                                    result = "S{}/{}".format(pageStart, pageEnd)
+                                else:
+                                    #result = "S{}".format(pageStart)
+                                    result = pageStart
                                 line = line.replace(delimiter + "SEITE-VON-BIS" + delimiter, result)
                             if delimiter + "SPRECHER" + delimiter in line:
                                 #TODO berechnetes Feld aus SATZ-Tabelle
