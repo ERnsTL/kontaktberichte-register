@@ -274,10 +274,42 @@ if __name__ == '__main__':
                 result = book["KB-BIS"]
                 line = line.replace(delimiter + "KB-BIS-NAME" + delimiter, result)
             if delimiter + "KB-VON-DATUM" + delimiter in line:
-                result = "TODO"    #TODO generate from chapters list
+                # get first chapter from book
+                bookFirstChapter = book["KB-VON"]
+                # find that chapter in chapters, get its date
+                #TODO sanity checks:
+                #TODO does NAME field exist before comparison?
+                #TODO check if found, otherwise warning
+                dateFirst = "(erster KB im Buch nicht vorhanden)"
+                bookKey = book["TITEL-KURZ"]
+                if bookKey in chapters:
+                    for chapter in chapters[bookKey]:
+                        if chapter["NAME"] == bookFirstChapter:
+                            dateFirst = chapter["DATUM"]
+                            break
+                    result = "{}".format(dateFirst)  #TODO customisable date format
+                else:
+                    #TODO warning
+                    result = "(kein KB im Buch vorhanden)"
                 line = line.replace(delimiter + "KB-VON-DATUM" + delimiter, result)
             if delimiter + "KB-BIS-DATUM" + delimiter in line:
-                result = "TODO"   #TODO generate
+                # get last chapter from book
+                bookLastChapter = book["KB-BIS"]
+                # find that chapter in chapters, get its date
+                #TODO sanity checks:
+                #TODO does NAME field exist before comparison?
+                #TODO check if found, otherwise warning
+                dateLast = "(letzter KB im Buch nicht vorhanden)"
+                bookKey = book["TITEL-KURZ"]
+                if bookKey in chapters:
+                    for chapter in chapters[bookKey]:
+                        if chapter["NAME"] == bookLastChapter:
+                            dateLast = chapter["DATUM"]
+                            break
+                    result = "{}".format(dateLast)  #TODO customisable date format
+                else:
+                    #TODO warning
+                    result = "(kein KB im Buch vorhanden)"
                 line = line.replace(delimiter + "KB-BIS-DATUM" + delimiter, result)
             if delimiter in line and args.quiet == False:
                 print("WARNUNG: Unbekanntes Ersetzungsfeld in Zeile {}".format(line.rstrip()))
@@ -347,6 +379,7 @@ if __name__ == '__main__':
                                 if pageStart != pageEnd:
                                     result = "S{}/{}".format(pageStart, pageEnd)
                                 else:
+                                    #TODO make these two configurable
                                     #result = "S{}".format(pageStart)
                                     result = pageStart
                                 line = line.replace(delimiter + "SEITE-VON-BIS" + delimiter, result)
