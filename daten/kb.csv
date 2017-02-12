@@ -1,5 +1,5 @@
 NAME	NUMMER	SONDER-SUFFIX	SONDER-TITEL	DATUM	ZEIT	ORT	PERSONEN	SAETZE-VON	SAETZE-BIS	EINLEITUNG
-0a-sfath	0	a-sfath	Sfaths Erklärung	1945-02-03	12:10		Eduard, Sfath	Sfa1	Sfa191	Erklärung an den acht Jahre alten Eduard. Zuvor zwei einführende Kapitel Wie alles begann und Meine erste UFO-Sichtung und die ersten danach folgenden Kontakte.
+0a-sfath	0	a-sfath	Sfaths Erklärung	1945-02-03	12:10:00		Eduard, Sfath	Sfa1	Sfa191	Erklärung an den acht Jahre alten Eduard. Zuvor zwei einführende Kapitel Wie alles begann und Meine erste UFO-Sichtung und die ersten danach folgenden Kontakte.
 0b-asket1	0	a-asket1	Askets Erklärungen 3. Februar	1953-02-03			Billy, Asket	Ask1	Ask262	Zuvor eine längere Erklärung von Billy über die ersten Sichtungen von fliegenden Untertassen und Kontakt mit Sfath sowie zur Bekanntschaft mit Asket. [TODO Inhalt genauer] Sie sind zeitmäßig vor KB31 gelegen, aber im PPK-Block nach diesem eingetragen, vermutlich weil sie von Billy nach Verlust der Papieraufzeichnungen nachgetragen wurden. Sie sind daher in diesem Register in zeitlicher Reihenfolge eingeordnet.
 0c-asket2	0	b-asket2	Askets Erklärungen 4. Februar	1953-02-04			Billy, Asket	Ask1	Ask47	Zuvor eine Erklärung über die vorherigen Erklärungen und Ausführungen von Asket. TODO sollen diese Erklärungen ebenfalls aufgeführt und verstichwortet werden?
 0d-asket3	0	c-asket3	Askets Erklärungen 7. Februar	1953-02-07			Billy, Asket	Ask1	Ask124	Zuvor wieder eine Erklärung über die vorherigen Erklärungen und Ausführungen von Asket.
@@ -7,46 +7,46 @@ NAME	NUMMER	SONDER-SUFFIX	SONDER-TITEL	DATUM	ZEIT	ORT	PERSONEN	SAETZE-VON	SAETZE
 0f-asket5	0	e-asket5	Askets Erklärungen 9. Februar	1953-02-09		Cheops-Pyramide von Gizeh in Ägypten	Eduard, Asket	Ask1	Ask27	Zuvor eine Erklärung über die Zeitreise und die vorherigen Ereignisse zusammen mit Asket.
 0g-asket6	0	f-asket6	Askets Erklärungen 11. Februar	1953-02-11			Eduard, Asket	Ask1	Ask16	
 0h-asket7	0	g-asket7	Askets Erklärungen 14. Februar	1953-02-14		Wüstengebirge am Toten Meer in Jordanien	Eduard, Asket, Jitschi, Jmmanuel	Ask1	Jmm258	Zuvor eine Erklärung über die von Asket erhaltenen Erklärungen, vor allem über geheim zu haltende. Nach dieser Erklärung und dem Zeitreise-Besuch bei Jmmanuel folgen zwei kurze abschließende Erklärungen von Billy.
-1a-einführung	1	a-einführung	Erste Unterhaltung / Einführungskonversation	1975-01-28	14:34	Hinwil	Billy, Semjase	Sem1	Sem22	Diese Konversation findet vor Semjases Erklärungen statt. Die Sätze sind nicht offiziell nummeriert, daher Semjases Sätze in Selbstregie nummeriert.
-1	1		Semjases Erklärungen	1975-01-28	14:34	Hinwil	Billy, Semjase	Sem1	Sem79	Diese Erklärungen sind Teil von KB1.
-2	2			1975-02-03	22:10		Billy, Semjase	Sem1	Sem75	
-3	3			1975-02-08	03:03		Billy, Semjase	Sem1	Sem53	
-4	4			1975-02-15	01:48		Billy, Semjase	Sem1	Sem116	
-5	5			1975-02-16	23:41		Billy, Semjase	Sem1	Sem195	
-6	6			1975-02-23	23:30		Billy, Semjase	Sem1	Sem121	
-7	7			1975-02-25	18:02		Billy, Semjase	Sem1	Sem252	
-7a-auftrag1	7	a-auftrag1	Auftragsteil (1)	1975-02-25	18:02		Billy, Semjase	Sem1	Sem1	Dies ist nach dem KB7 eingefügt.
-7b-auftrag2	7	b-auftrag2	Auftragsteil (2)	1975-02-25	18:02		Billy, Semjase	Sem1	Sem18	Dies ist nach dem KB7a = Auftragsteil 1 eingefügt.
-7c-auftrag3	7	c-auftrag3	Auftragsteil (3)	1975-02-25	18:02		Billy, Semjase	Sem1	Sem46	Dies ist nach dem KB7b = Auftragsteil 2 eingefügt. Zusätzliche Erklärung bei Gedankenkontakt am 25. Februar 1975 = KB12a.
-8	8			1975-03-18	15:04		Billy, Semjase	Sem1	Sem249	
-9	9			1975-03-21	16:18		Billy, Semjase	Sem1	Sem274	
-10	10			1975-03-26	15:20		Billy, Semjase	Sem1	Sem306	
-11	11			1975-04-15	15:40		Billy, Semjase	Sem1	Sem167	
-12	12			1975-04-20	03:11		Billy, Semjase	Sem1	Sem42	
-12a-gedanken	12	a-gedanken	Zusätzliche Ausführungen gedanklicher Übermittlung	1975-04-21	09:37		Billy, Semjase	Sem1	Sem80	Dies ist nach dem KB12 eingefügt. Nachfolgend stehen einige Absätze an Besonderheiten zu KB12.
-13	13			1975-04-25	17:20		Billy, Semjase	Sem1	Sem50	
-14	14			1975-04-29	14:00		Billy, Semjase	Sem1	Sem82	
-15	15			1975-05-01	15:57		Billy, Semjase	Sem1	Sem128	
-16	16			1975-05-03	08:17		Billy, Semjase	Sem1	Sem41	
-17	17			1975-05-09	02:48		Billy, Semjase	Sem1	Sem125	
-18	18			1975-05-15	21:34		Billy, Semjase	Sem1	Sem169	
-19	19			1975-05-16	14:09		Billy, Semjase	Sem1	Sem26	
-20	20			1975-05-20	10:14		Billy, Semjase	Sem1	Sem100	
-21	21			1975-05-27	02:06		Billy, Semjase	Sem1	Sem52	
-22	22			1975-05-28	18:17		Billy, Semjase	Sem1	Sem129	
-23	23			1975-06-03	10:44		Billy, Semjase	Sem1	Sem173	
-24	24			1975-06-07	09:08		Billy, Semjase	Sem1	Sem97	
-25	25			1975-06-16	01:46		Billy, Semjase	Sem1	Sem108	
-26	26			1975-06-18	04:11		Billy, Semjase	Sem1	Sem73	
-27	27			1975-06-25	14:37		Billy, Semjase	Sem1	Sem48	
-28	28			1975-06-27	10:47		Billy, Semjase, Quetzal	Sem1	Que78	Gedankenübermittlungskontakt.
-29	29			1975-07-07	10:37		Billy, Semjase	Sem1	Sem166	
-30	30			1975-07-15	09:46		Billy, Semjase	Sem1	Sem41	Gedankenübermittlungskontakt.
-31	31			1975-07-17	10:14		Billy, Semjase, Ptaah, Asket, Nera	Sem1	Pta1176	Im PPK-Block ist dieser Kontakt auf vier Teile aufgeteilt und stückweise zwischen den weiteren Kontakten eingeflochten, wie von Semjase festgelegt. Hier im Register wird er jedoch als gesamthaft ein Kontakt mit Löchern in den Seitennummern betrachtet. Hier findet auch der erste Kontakt mit Semjases Vater (Ptaah) statt.
-32	32			1975-09-08	14:16		Billy, Semjase	Sem1	Sem27	Gedankenübermittlungskontakt.
-33	33			1975-09-12	10:57		Billy, Semjase	Sem1	Sem93	
-34	34			1975-09-14	13:43		Billy, Semjase	Sem1	Sem320	
-35	35			1975-09-16	09:14		Billy, Semjase	Sem1	Sem49	Gedankenübermittlungskontakt.
-36	36			1975-10-20	13:57		Billy, Semjase, Ptaah	Sem1	Sem172	
-37	37			1975-11-03	19:43		Billy, Semjase	Sem1	Sem89	
-38	38			1975-11-13	09:36		Billy, Semjase, Quetzal	Sem1	Sem245	
+1a-einführung	1	a-einführung	Erste Unterhaltung / Einführungskonversation	1975-01-28	14:34:00	Hinwil	Billy, Semjase	Sem1	Sem22	Diese Konversation findet vor Semjases Erklärungen statt. Die Sätze sind nicht offiziell nummeriert, daher Semjases Sätze in Selbstregie nummeriert.
+1	1		Semjases Erklärungen	1975-01-28	14:34:00	Hinwil	Billy, Semjase	Sem1	Sem79	Diese Erklärungen sind Teil von KB1.
+2	2			1975-02-03	22:10:00		Billy, Semjase	Sem1	Sem75	
+3	3			1975-02-08	03:03:00		Billy, Semjase	Sem1	Sem53	
+4	4			1975-02-15	01:48:00		Billy, Semjase	Sem1	Sem116	
+5	5			1975-02-16	23:41:00		Billy, Semjase	Sem1	Sem195	
+6	6			1975-02-23	23:30:00		Billy, Semjase	Sem1	Sem121	
+7	7			1975-02-25	18:02:00		Billy, Semjase	Sem1	Sem252	
+7a-auftrag1	7	a-auftrag1	Auftragsteil (1)	1975-02-25	18:02:00		Billy, Semjase	Sem1	Sem1	Dies ist nach dem KB7 eingefügt.
+7b-auftrag2	7	b-auftrag2	Auftragsteil (2)	1975-02-25	18:02:00		Billy, Semjase	Sem1	Sem18	Dies ist nach dem KB7a = Auftragsteil 1 eingefügt.
+7c-auftrag3	7	c-auftrag3	Auftragsteil (3)	1975-02-25	18:02:00		Billy, Semjase	Sem1	Sem46	Dies ist nach dem KB7b = Auftragsteil 2 eingefügt. Zusätzliche Erklärung bei Gedankenkontakt am 25. Februar 1975 = KB12a.
+8	8			1975-03-18	15:04:00		Billy, Semjase	Sem1	Sem249	
+9	9			1975-03-21	16:18:00		Billy, Semjase	Sem1	Sem274	
+10	10			1975-03-26	15:20:00		Billy, Semjase	Sem1	Sem306	
+11	11			1975-04-15	15:40:00		Billy, Semjase	Sem1	Sem167	
+12	12			1975-04-20	03:11:00		Billy, Semjase	Sem1	Sem42	
+12a-gedanken	12	a-gedanken	Zusätzliche Ausführungen gedanklicher Übermittlung	1975-04-21	09:37:00		Billy, Semjase	Sem1	Sem80	Dies ist nach dem KB12 eingefügt. Nachfolgend stehen einige Absätze an Besonderheiten zu KB12.
+13	13			1975-04-25	17:20:00		Billy, Semjase	Sem1	Sem50	
+14	14			1975-04-29	14:00:00		Billy, Semjase	Sem1	Sem82	
+15	15			1975-05-01	15:57:00		Billy, Semjase	Sem1	Sem128	
+16	16			1975-05-03	08:17:00		Billy, Semjase	Sem1	Sem41	
+17	17			1975-05-09	02:48:00		Billy, Semjase	Sem1	Sem125	
+18	18			1975-05-15	21:34:00		Billy, Semjase	Sem1	Sem169	
+19	19			1975-05-16	14:09:00		Billy, Semjase	Sem1	Sem26	
+20	20			1975-05-20	10:14:00		Billy, Semjase	Sem1	Sem100	
+21	21			1975-05-27	02:06:00		Billy, Semjase	Sem1	Sem52	
+22	22			1975-05-28	18:17:00		Billy, Semjase	Sem1	Sem129	
+23	23			1975-06-03	10:44:00		Billy, Semjase	Sem1	Sem173	
+24	24			1975-06-07	09:08:00		Billy, Semjase	Sem1	Sem97	
+25	25			1975-06-16	01:46:00		Billy, Semjase	Sem1	Sem108	
+26	26			1975-06-18	04:11:00		Billy, Semjase	Sem1	Sem73	
+27	27			1975-06-25	14:37:00		Billy, Semjase	Sem1	Sem48	
+28	28			1975-06-27	10:47:00		Billy, Semjase, Quetzal	Sem1	Que78	Gedankenübermittlungskontakt.
+29	29			1975-07-07	10:37:00		Billy, Semjase	Sem1	Sem166	
+30	30			1975-07-15	09:46:00		Billy, Semjase	Sem1	Sem41	Gedankenübermittlungskontakt.
+31	31			1975-07-17	10:14:00		Billy, Semjase, Ptaah, Asket, Nera	Sem1	Pta1176	Im PPK-Block ist dieser Kontakt auf vier Teile aufgeteilt und stückweise zwischen den weiteren Kontakten eingeflochten, wie von Semjase festgelegt. Hier im Register wird er jedoch als gesamthaft ein Kontakt mit Löchern in den Seitennummern betrachtet. Hier findet auch der erste Kontakt mit Semjases Vater (Ptaah) statt.
+32	32			1975-09-08	14:16:00		Billy, Semjase	Sem1	Sem27	Gedankenübermittlungskontakt.
+33	33			1975-09-12	10:57:00		Billy, Semjase	Sem1	Sem93	
+34	34			1975-09-14	13:43:00		Billy, Semjase	Sem1	Sem320	
+35	35			1975-09-16	09:14:00		Billy, Semjase	Sem1	Sem49	Gedankenübermittlungskontakt.
+36	36			1975-10-20	13:57:00		Billy, Semjase, Ptaah	Sem1	Sem172	
+37	37			1975-11-03	19:43:00		Billy, Semjase	Sem1	Sem89	
+38	38			1975-11-13	09:36:00		Billy, Semjase, Quetzal	Sem1	Sem245	
