@@ -78,7 +78,7 @@
 % headlines
 % no numbering
 %   sec 4.2 @ http://mirrors.ctan.org/macros/latex/contrib/titlesec/titlesec.pdf
-\setcounter{secnumdepth}{0} % = nur Teile werden nummeriert
+\setcounter{secnumdepth}{-1} % = nur Teile werden nummeriert
 
 % code listing
 \usepackage{xcolor}
@@ -251,8 +251,7 @@ Daten-Version: !!DATEN-VERSION!! von !!DATEN-DATUMZEIT!!
 \mainmatter
 
 !!BUCH-ANFANG!!
-\chapter*{!!TITEL!!}
-\addcontentsline{toc}{chapter}{!!TITEL!!}
+\chapter{!!TITEL!!}
 
 Bezogen auf Ausgabe !!AUSGABE-JAHR!!. Enthält die Kontaktberichte !!KB-VON-NAME!! bis !!KB-BIS-NAME!! aus Zeitraum !!KB-VON-DATUM!! bis !!KB-BIS-DATUM!!.
 
