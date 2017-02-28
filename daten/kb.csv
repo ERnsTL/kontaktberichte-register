@@ -64,7 +64,7 @@ NAME	NUMMER	SONDER-SUFFIX	SONDER-TITEL	DATUM	ZEIT	ORT	PERSONEN	SAETZE-VON	SAETZE
 49	49			1976-03-28	00:58:00	TODO	Billy, Semjase	Sem1	Sem42	
 50	50			1976-04-06	01:37:00	Hinwil Umgebung	Billy, Semjase	Sem1	Sem155	
 51	51			1976-04-27	17:26:00	TODO	Billy, Semjase	Sem1	Sem186	Enthält eingefügt den Nachruf und einen Nekrolog für Mönch Dharmawara Mahathera.
-51a-arahatathersata	51	a-arahatathersata	Telepathische Übermittlung von Arahat Athersata	1976-05-12	09:11:00		Arahat Athersata	Ara1	Ara39	Monologische Übermittlung.
+51a-arahat	51	a-arahat	Telepathische Übermittlung von Arahat Athersata	1976-05-12	09:11:00		Arahat Athersata	Ara1	Ara39	Monologische Übermittlung.
 52	52			1976-05-17	00:47:00		Billy, Semjase	Sem1	Sem105	
 53	53			1976-05-27	13:34:00		Billy, Semjase	Sem1	Sem202	Wochentag ist mit Donnerstag/Auffahrt angegeben.
 54	54			1976-06-08	01:27:00		Billy, Semjase	Sem1	Sem191	
@@ -98,8 +98,64 @@ NAME	NUMMER	SONDER-SUFFIX	SONDER-TITEL	DATUM	ZEIT	ORT	PERSONEN	SAETZE-VON	SAETZE
 79	79			1977-07-16	15:37:00		Billy, Semjase	Sem1	Sem327	
 80	80			1977-08-24	12:01:00		Billy, Semjase	Sem1	Sem67	
 81	81			1977-09-04	11:03:00		Billy, Ptaah, Quetzal, Semjase	Pta1	Sem38	"Einhält einen Anhang mit dem Titel ""ORDNUNGS-REGELN (ausgearbeitet vom Hohen Rat)"""
-82	82			1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Datenbank/SQL-Beschränkungen.
-132	132			1975-01-01	00:00:00		Billy	Sem1	Sem2	Platzhalter-Eintrag für Datenbank/SQL-Beschränkungen.
+82	82			1977-09-06	18:04:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Datenbank/SQL-Beschränkungen.
+83	83			1977-09-10	19:53:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+84	84			1977-09-11	03:48:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+84a-gedanken	84	a-gedanken	Gedankenübermittlungskontakt	1977-09-11	00:00:00		Billy, weitere?	Sem1	Sem2	Gedankenübermittlungskontakt. Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+85	85			1977-09-15	16:11:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+86	86			1977-09-21	15:28:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+87	87			1977-10-05	14:45:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+88	88			1977-10-17	16:12:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+89	89			1977-10-28	14:14:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+90	90			1977-11-11	16:14:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+91	91			1977-11-17	17:24:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+92	92			1977-11-23	14:34:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+93	93			1977-11-29	00:43:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+94	94			1977-12-03	13:01:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+95	95			1977-12-17	19:58:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+96	96			1977-12-21	19:53:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+97	97			1977-12-28	20:08:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+98	98			1977-12-30	23:34:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+99	99			1978-01-04	22:04:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+100	100			1978-01-06	04:11:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+101	101			1978-01-16	00:08:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+102	102			1978-01-21	03:41:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+103	103			1978-03-01	02:51:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+104	104			1978-03-18	03:32:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+105	105			1978-04-05	00:31:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+106	106			1978-04-10	15:41:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+107	107			1978-05-20	14:50:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+108	108			1978-06-01	18:31:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+108a-zwischen	108	a-zwischen	Zwischengespräch	1978-06-01	00:00:00		Billy, weitere?	Sem1	Sem2	"Dies ist nach dem KB108 eingefügt und markiert mit ""vorderhand unter Ausschluss der Öffentlichkeit"". Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation."
+109	109			1978-06-08	18:14:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+110	110			1978-07-09	14:40:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+111	111			1978-07-17	08:03:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+112	112			1978-07-19	22:03:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+113	113			1978-08-06	20:31:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+114	114			1978-08-24	14:33:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+115	115			1978-10-19	18:04:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+116	116			1978-10-28	11:53:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+117	117			1978-11-29	15:12:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+117a-proklamation	117	a-proklamation	Proklamation an die Vereinigten Staaten von Amerika	1978-11-29	00:00:00		Billy, weitere?	Sem1	Sem2	Dies ist nach dem KB117 eingefügt. Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+118	118			1978-12-07	15:55:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+119	119			1979-02-03	14:46:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+120	120			1979-02-14	01:40:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+121	121			1979-03-24	13:40:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+121a-fortsetzung1	121	a-fortsetzung	Fortsetzung	1979-03-24	00:00:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+121b-fortsetzung2	121	b-fortsetzung	Fortsetzung	1979-03-24	00:00:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+122	122			1979-04-06	03:01:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+123	123			1979-06-04	01:43:00		Billy, weitere?	Sem1	Sem2	"Wochentag ist mit ""Pfingstmontag"" angegeben. Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation."
+124	124			1979-11-11	11:11:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+125	125			1979-12-11	12:34:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+125a-fortsetzung	125	a-fortsetzung	Fortsetzung	1979-12-11	00:00:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+125b-liste	125	b-liste	Namensliste	1979-12-11	00:00:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+126	126			1980-01-26	01:53:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+127	127			1980-02-03	19:03:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+128	128			1980-02-15	04:48:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+129	129			1980-03-05	03:05:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+130	130			1980-05-31	02:18:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+131	131			1980-06-15	01:05:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+132	132			1980-07-18	11:03:00		Billy	Sem1	Sem2	Platzhalter-Eintrag für Datenbank/SQL-Beschränkungen.
 133	133			1975-01-01	00:00:00		Billy	Sem1	Sem2	Platzhalter-Eintrag für Datenbank/SQL-Beschränkungen.
 181	181			1975-01-01	00:00:00		Billy	Sem1	Sem2	Platzhalter-Eintrag für Datenbank/SQL-Beschränkungen.
 182	182			1975-01-01	00:00:00		Billy	Sem1	Sem2	Platzhalter-Eintrag für Datenbank/SQL-Beschränkungen.
