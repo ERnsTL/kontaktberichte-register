@@ -220,7 +220,22 @@ Wer Kalender und Kontakte mit seinem Telefon abgleichen kann oder Dropbox oder e
 
 #### Wahl der Lizenzen
 
-TODO
+Für die Daten:
+
+* *Creative Commons* statt regulärem Kopierrecht/Copyright, weil Freigabe erwünscht ist zum Nutzen für jedermann.
+* Namensnennung ist immer erforderlich bei Creative Commons-Lizenzen. Das ist auch in Ordnung, um die Arbeit und alle Beiträge zu würdigen.
+* Nicht-kommerziell: Mit Materialien, die dem Gemeinwohl dienen soll, soll kein Profit gemacht werden und für jeden kostenfrei oder im Fall einer Druckversion oder CD-ROM-Version odgl. gegen Abgeltung der Unkosten für deren Herstellung verfügbar sein. Die Autoren arbeiten unentgeltlich und in ihrer Freizeit am Projekt mit.
+* Weitergabe unter gleichen Bedingungen: Derivate und Änderungen stehen automatisch unter der selben Lizenz wie das ursprüngliche Werk. Dies ist ein Ausdruck der Gegenseitigkeit und des Zurückgebens. Ohne diesem Lizenzmodul könnte ein Derivat des Werkes unter reguläres Kopierrecht gestellt werden (Alle Rechte vorbehalten).
+
+Daher fiel die Wahl auf die CC-Lizenz *BY-NC-SA*.
+
+Für das inkludierte Generator-Programm:
+
+* Es ist kein außergewöhnliches Programm.
+* Seine Verwendung ist sehr auf die Daten zugeschnitten.
+* Daher ist kein besonderer Schutz notwendig.
+
+Daher fiel die Wahl auf die MIT-Lizenz.
 
 #### Wahl der Datenstrukturen
 
