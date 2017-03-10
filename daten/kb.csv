@@ -81,7 +81,7 @@ NAME	NUMMER	SONDER-SUFFIX	SONDER-TITEL	DATUM	ZEIT	ORT	PERSONEN	SAETZE-VON	SAETZE
 63	63			1976-09-22	16:11:00		Billy, Semjase	Sem1	Sem90	
 64	64			1976-10-02	17:18:00		Billy, Semjase	Sem1	Sem110	
 65	65			1976-10-23	02:47:00		Billy, Semjase, Ptaah	Sem1	Sem54	
-66a-hoherrat	65	a-hoherrat	Sonderübermittlung des Hohen Rates	1976-11-02	17:37:00		Hoher Rat	Hoh1	Hoh19	Monologische Übermittlung.
+65a-hoherrat	65	a-hoherrat	Sonderübermittlung des Hohen Rates	1976-11-02	17:37:00		Hoher Rat	Hoh1	Hoh19	Monologische Übermittlung.
 66	66			1976-11-10	14:18:00		Billy, Semjase	Sem1	Sem232	
 67	67			1976-11-11	15:45:00		Billy, Semjase	Sem1	Sem11	Gedankenübermittlungskontakt.
 68	68			1976-11-12	00:47:00		Billy, Semjase	Sem1	Sem62	
@@ -437,8 +437,8 @@ NAME	NUMMER	SONDER-SUFFIX	SONDER-TITEL	DATUM	ZEIT	ORT	PERSONEN	SAETZE-VON	SAETZE
 394	394			1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
 394a	394	a-fortsetzung		1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Mit eigener Uhrzeit ohne eigenem Titel angegeben. Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
 395	395			1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
-395a-fortsetzung	395	a-fortsetzung		1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Mit eigener Uhrzeit ohne eigenem Titel angegeben. Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
-395b-fortsetzung	395	b-fortsetzung		1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Mit eigener Uhrzeit ohne eigenem Titel angegeben. Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+395a-fortsetzung1	395	a-fortsetzung1		1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Mit eigener Uhrzeit ohne eigenem Titel angegeben. Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+395b-fortsetzung2	395	b-fortsetzung2		1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Mit eigener Uhrzeit ohne eigenem Titel angegeben. Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
 396	396			1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
 397	397			1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
 398	398			1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
@@ -449,8 +449,8 @@ NAME	NUMMER	SONDER-SUFFIX	SONDER-TITEL	DATUM	ZEIT	ORT	PERSONEN	SAETZE-VON	SAETZE
 403	403			1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
 404	404			1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
 405	405			1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
-405a-fortsetzung	405	a-fortsetzung		1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Mit eigener Uhrzeit ohne eigenem Titel angegeben. Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
-405b-fortsetzung	405	b-fortsetzung		1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Mit eigener Uhrzeit ohne eigenem Titel angegeben. Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+405a-fortsetzung1	405	a-fortsetzung1		1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Mit eigener Uhrzeit ohne eigenem Titel angegeben. Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
+405b-fortsetzung2	405	b-fortsetzung2		1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Mit eigener Uhrzeit ohne eigenem Titel angegeben. Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
 406	406			1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
 407	407			1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
 408	408			1975-01-01	00:00:00		Billy, weitere?	Sem1	Sem2	Platzhalter-Eintrag für Bearbeitungsmöglichkeit Datenbank-Applikation.
