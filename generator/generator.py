@@ -328,7 +328,8 @@ if __name__ == '__main__':
                         result = chapter["DATUM"]   #TODO harmonize name csv <-> template
                         line = line.replace(delimiter + "DATUM" + delimiter, result)
                     if delimiter + "ZEIT" + delimiter in line:
-                        result = chapter["ZEIT"]   #TODO harmonize name csv <-> template
+                    	# expected format ist hh:mm:ss
+                        result = chapter["ZEIT"][:5]   #TODO harmonize name csv <-> template
                         line = line.replace(delimiter + "ZEIT" + delimiter, result)
                     if delimiter + "PERSONEN" + delimiter in line:
                         result = chapter["PERSONEN"]
